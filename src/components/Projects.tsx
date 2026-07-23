@@ -25,6 +25,7 @@ const projects = [
     description: "Predictive ML models for flood forecasting using statistical time-series data and regression techniques.",
     meta: "SEAS Research · Python · ML · 2025",
     color: "green",
+    href: "https://github.com/lighthouse16/deepflood",
   },
 ];
 
@@ -56,7 +57,12 @@ export const Projects = () => {
                   <h3>{project.title}</h3>
                   <p className={styles.description}>{project.description}</p>
                 </div>
-                <a href={`mailto:haidang.trih@gmail.com?subject=${encodeURIComponent(project.title)}`} aria-label={`Ask about ${project.title}`}>
+                <a 
+                  href={project.href || `mailto:haidang.trih@gmail.com?subject=${encodeURIComponent(project.title)}`} 
+                  target={project.href ? "_blank" : undefined} 
+                  rel={project.href ? "noreferrer" : undefined} 
+                  aria-label={`View ${project.title}`}
+                >
                   <ArrowUpRight />
                 </a>
               </div>
