@@ -205,7 +205,7 @@
 
 /* ── card content ── */
 .cardContent {
-  max-width: 380px;
+  padding-right: 80px;
 }
 
 .period {
@@ -225,6 +225,7 @@
   line-height: 1.15;
   margin-bottom: 6px;
   color: var(--ink);
+  text-wrap: balance;
 }
 
 .org {
@@ -248,6 +249,7 @@
 
 .expandable > * {
   overflow: hidden;
+  min-height: 0;
 }
 
 .expanded {
@@ -330,7 +332,7 @@
   }
 
   .card { max-width: none; }
-  .cardContent { max-width: none; }
+
 }
 
 @media (max-width: 500px) {
@@ -340,6 +342,7 @@
   .dotRing { inset: -4px; }
   .statBadge { position: static; margin-bottom: 16px; align-self: flex-start; }
   .card { padding: 24px; }
+  .cardContent { padding-right: 0; }
 }
 
 /* ── reduced motion ── */

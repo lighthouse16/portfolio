@@ -232,12 +232,14 @@ export const Experience = () => {
                       isOpen ? styles.expanded : ""
                     }`}
                   >
-                    <p className={styles.detail}>{e.detail}</p>
-                    <ul className={styles.bullets}>
-                      {e.bullets.map((b) => (
-                        <li key={b}>{b}</li>
-                      ))}
-                    </ul>
+                    <div className={styles.expandableInner}>
+                      <p className={styles.detail}>{e.detail}</p>
+                      <ul className={styles.bullets}>
+                        {e.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
                   {/* expand indicator */}
