@@ -11,6 +11,12 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const honors = [
   {
     year: "2025",
+    title: "Provincial Competitive Programming Excellent Student Contest",
+    rank: "2nd Place",
+    color: "red" as const,
+  },
+  {
+    year: "2025",
     title: "Newton Spark Young Informatics Olympiad",
     rank: "Finalist",
     color: "blue" as const,
