@@ -1,0 +1,84 @@
+.section {
+  padding: clamp(80px, 12vw, 140px) 0 0;
+  scroll-margin-top: calc(-1 * clamp(80px, 12vw, 140px));
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.intro {
+  padding-bottom: clamp(56px, 7vw, 90px);
+}
+
+.title {
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 550;
+  line-height: 0.88;
+  margin-left: -0.05em; /* Optical alignment for R */
+}
+
+.title span { color: var(--yellow); }
+
+.track {
+  display: flex;
+  gap: clamp(24px, 3vw, 40px);
+  padding: 0 clamp(24px, 4vw, 80px) clamp(80px, 10vw, 140px);
+  width: max-content;
+  will-change: transform;
+}
+
+.card {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(340px, 28vw, 480px);
+  padding: clamp(36px, 5vw, 56px);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  will-change: transform;
+  transition: box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--accent, var(--blue));
+  box-shadow: 0 24px 80px rgba(32, 33, 36, 0.08);
+}
+
+.year {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cardTitle {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 650;
+
+  line-height: 1.25;
+  flex: 1;
+  text-wrap: balance;
+}
+
+.rank {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent, var(--blue));
+}
+
+.accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent, var(--blue));
+}
+
+@media (max-width: 720px) {
+  .card { width: 82vw; }
+}
