@@ -225,7 +225,9 @@
   line-height: 1.15;
   margin-bottom: 6px;
   color: var(--ink);
-  text-wrap: balance;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .org {
