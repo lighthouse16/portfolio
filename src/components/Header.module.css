@@ -1,0 +1,125 @@
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  padding: 16px 0;
+  transition: padding 300ms var(--ease-out), background 300ms var(--ease-out), border-color 300ms var(--ease-out);
+}
+
+.scrolled {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(223, 225, 229, 0.8);
+  background: rgba(248, 249, 250, 0.86);
+  backdrop-filter: blur(18px);
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 54px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.mark {
+  display: grid;
+  grid-template-columns: repeat(2, 7px);
+  gap: 3px;
+}
+
+.mark i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.mark i:nth-child(2) { background: var(--red); }
+.mark i:nth-child(3) { background: var(--yellow); }
+.mark i:nth-child(4) { background: var(--green); }
+
+.links {
+  display: flex;
+  gap: clamp(20px, 3vw, 48px);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.links a,
+.contact {
+  position: relative;
+}
+
+.links a::after,
+.contact::after {
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms var(--ease-out);
+}
+
+.links a:hover::after,
+.contact:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.contact {
+  justify-self: end;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.contact span { color: var(--blue); }
+
+.menu {
+  display: none;
+  justify-self: end;
+  padding: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .nav { grid-template-columns: 1fr auto; }
+  .contact { display: none; }
+  .menu { display: grid; place-items: center; }
+  .links {
+    position: absolute;
+    top: 74px;
+    right: 16px;
+    left: 16px;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 20px 60px rgba(32, 33, 36, 0.12);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+  }
+  .links a { padding: 16px; color: var(--ink); font-size: 1rem; }
+  .links.open { visibility: visible; opacity: 1; transform: translateY(0); }
+}

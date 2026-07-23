@@ -1,0 +1,57 @@
+/* ── Hero section ── */
+
+.hero {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  padding: 128px 0 48px;
+  background: var(--white);
+}
+
+.frame {
+  display: flex;
+  justify-content: center;
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.kicker { margin-bottom: clamp(36px, 6vh, 72px); }
+
+/* TrueFocus inherits size from here */
+.title {
+  font-size: clamp(5rem, 10.7vw, 10.5rem);
+  font-weight: 600;
+  letter-spacing: -0.085em;
+  line-height: 0.85;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(220px, 520px) auto;
+  align-items: end;
+  gap: 32px;
+  margin-top: clamp(38px, 6vh, 72px);
+}
+
+.intro p { color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.5; }
+.intro a { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; white-space: nowrap; }
+.intro a svg { transition: transform 250ms var(--ease-out); }
+.intro a:hover svg { transform: translateY(5px); }
+
+/* ── responsive ── */
+@media (max-width: 900px) {
+  .hero { min-height: auto; }
+  .title { font-size: clamp(4.8rem, 14vw, 9rem); }
+}
+
+@media (max-width: 560px) {
+  .hero { padding-top: 116px; }
+  .intro { grid-template-columns: 1fr; align-items: start; }
+  .title { font-size: clamp(3.6rem, 16vw, 6rem); }
+}

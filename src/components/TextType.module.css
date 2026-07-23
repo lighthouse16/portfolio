@@ -1,0 +1,22 @@
+.container {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0;
+  overflow: visible;
+  color: var(--blue);
+  font-weight: 400;
+  /* Slightly shift the visual rendering without taking layout space */
+  transform: translateX(0.1em); 
+}
+
+.cursorHidden {
+  opacity: 0; /* Changed from display:none to opacity to maintain structure */
+}
+
+.content {
+  display: inline;
+}
