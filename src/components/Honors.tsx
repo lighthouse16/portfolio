@@ -57,16 +57,13 @@ export const Honors = () => {
       if (!trackRef.current || !wrapRef.current) return;
 
       const cards = trackRef.current.children;
-      const totalScroll =
-        trackRef.current.scrollWidth - window.innerWidth + 80;
-
       gsap.to(trackRef.current, {
-        x: -totalScroll,
+        x: () => -(trackRef.current!.scrollWidth - window.innerWidth + 80),
         ease: "none",
         scrollTrigger: {
           trigger: wrapRef.current,
           start: "top top",
-          end: () => `+=${totalScroll}`,
+          end: () => `+=${trackRef.current!.scrollWidth - window.innerWidth + 80}`,
           pin: true,
           scrub: 0.8,
           invalidateOnRefresh: true,

@@ -52,11 +52,12 @@
 }
 
 .cardTitle {
-  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
   font-weight: 650;
   letter-spacing: -0.04em;
-  line-height: 1.15;
+  line-height: 1.25;
   flex: 1;
+  text-wrap: balance;
 }
 
 .rank {
