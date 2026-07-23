@@ -106,7 +106,7 @@
 /* ── card ── */
 .card {
   position: relative;
-  width: min(100%, 520px);
+  width: min(100%, max(520px, max-content));
   padding: clamp(28px, 4vw, 44px);
   background: var(--paper);
   border: 1px solid var(--line);
@@ -226,8 +226,6 @@
   margin-bottom: 6px;
   color: var(--ink);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .org {
