@@ -64,7 +64,6 @@ export const Honors = () => {
       const scrollTween = gsap.to(trackRef.current, {
         x: () => -(trackRef.current!.scrollWidth - window.innerWidth + 80),
         ease: "none",
-        force3D: true,
         scrollTrigger: {
           trigger: wrapRef.current,
           start: "top top",
