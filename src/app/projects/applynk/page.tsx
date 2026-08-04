@@ -55,6 +55,10 @@ export default function AppLynkCaseStudy() {
               <span>Product &amp; Full-Stack Engineering · Independent project</span>
               <span className={styles.metaDot}>·</span><span>2026 · Vietnam</span>
               <span className={styles.metaDot}>·</span><span>Work in progress</span>
+              <span className={styles.metaDot}>·</span>
+              <a href="https://applynk.haidangtrih.me/en" target="_blank" rel="noreferrer" className={styles.metaLink}>
+                ↗ live website
+              </a>
             </div>
           </header>
 
