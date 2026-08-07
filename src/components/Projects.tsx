@@ -11,8 +11,8 @@ const projects = [
     slug: "applynk",
     title: "AppLynk",
     subtitle: "AI-assisted opportunity discovery and data processing platform",
-    description: "A full-stack platform that turns fragmented web and social content into structured, searchable academic and career opportunities. The system combines multi-source ingestion, schema-constrained LLM extraction, duplicate control, semantic retrieval, asynchronous processing, and a bilingual user experience.",
-    tags: ["Applied AI", "Data Ingestion", "LLM Extraction", "Semantic Retrieval", "Backend Systems"],
+    description: "A platform that transforms fragmented academic and career opportunity information into structured, searchable records through automated ingestion, extraction, deduplication, and semantic retrieval.",
+    tags: ["Applied AI", "Data Systems", "Information Retrieval", "Backend Engineering"],
     year: "2026",
     href: "/projects/applynk",
   },
@@ -20,8 +20,8 @@ const projects = [
     slug: "deepflood",
     title: "DeepFlood",
     subtitle: "Leakage-aware hydrological time-series nowcasting",
-    description: "A basin-specific time-series ML system for same-day streamflow estimation in Vietnam's Long Đại basin. DeepFlood combines 39 hydrometeorological signals, seven-day sequences, a Conv1D–BiLSTM–Temporal Attention model, peak-aware training, and chronological validation against a persistence baseline.",
-    tags: ["Time-Series ML", "Temporal Validation", "Peak-Aware Regression", "Baseline Evaluation", "ML Engineering"],
+    description: "A basin-specific machine learning system for same-day streamflow nowcasting using temporal modeling, leakage-aware validation, and peak-sensitive training.",
+    tags: ["Time-Series ML", "Temporal Modeling", "Model Evaluation", "ML Engineering"],
     year: "2025",
     href: "/projects/deepflood",
   },
@@ -37,6 +37,9 @@ export const Projects = () => {
     >
       <div className={`container ${styles.heading}`}>
         <p className="eyebrow">04 / Projects</p>
+      </div>
+
+      <div className={styles.titleContainer}>
         <h2 id="projects-title" className={styles.titleWrapper}>
           <span className={styles.lineLeft}>Built with intent.</span>
           <span className={`${styles.headingAccent} ${styles.lineRight}`}>Made to move.</span>

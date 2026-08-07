@@ -132,7 +132,7 @@ export const Honors = () => {
         <div className="container">
           <p className="eyebrow">05 / Honors</p>
           <h2 id="honors-title" className={styles.title}>
-            Recognition <span>in computing &amp; mathematics.</span>
+            Recognition.
           </h2>
         </div>
       </div>

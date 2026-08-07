@@ -45,15 +45,15 @@ export const About = () => {
           <h2 id="about-title" className={styles.statement} data-reveal>
             {/* Invisible spacer to reserve height and prevent layout shift */}
             <span aria-hidden="true" className={styles.spacer}>
-              I build software where models, data, and systems meet.
+              {"Machine learning,\ndata systems & software."}
             </span>
             
             <div className={styles.typingWrapper}>
               <TextType
                 text={[
-                  "I build software where models, data, and systems meet.",
-                  "I turn quantitative reasoning into dependable software.",
-                  "I care about data quality and evaluation integrity."
+                  "Between models\nand systems.",
+                  "Machine learning,\ndata systems & software.",
+                  "Grounded in\nquantitative engineering."
                 ]}
                 typingSpeed={45}
                 deletingSpeed={25}
@@ -66,32 +66,11 @@ export const About = () => {
           </h2>
           <div className={styles.bio} data-reveal>
             <p>
-              I&apos;m a Computer Science student at The Hong Kong Polytechnic University, with a minor in Applied Mathematics. I am most interested in problems where quantitative reasoning has to survive contact with real data, imperfect assumptions, and production constraints.
+              I&apos;m a Computer Science student at The Hong Kong Polytechnic University, minoring in Applied Mathematics.
             </p>
             <p>
-              My recent work spans two sides of that problem. <strong>DeepFlood</strong> is a leakage-aware time-series machine learning project for same-day streamflow nowcasting, where I focused on temporal validation, rare-event weighting, and honest baseline comparison. <strong>AppLynk</strong> is an AI-assisted data product that turns fragmented web content into structured, searchable opportunities through extraction, deduplication, semantic retrieval, and asynchronous processing.
+              I work across machine learning, data systems, and software engineering, with a growing interest in quantitative and FinTech applications.
             </p>
-            <p>
-              I am currently exploring opportunities across <strong>AI/ML, quantitative and FinTech-oriented engineering, data systems, and software engineering</strong>. I care less about attaching a model to a product than about choosing the right abstraction, measuring it honestly, and building the surrounding system well.
-            </p>
-          </div>
-          <div className={styles.meta} data-reveal>
-            <div>
-              <span className={styles.label}>Location</span>
-              <span>Kowloon, Hong Kong</span>
-            </div>
-            <div>
-              <span className={styles.label}>University</span>
-              <span>PolyU — BSc (Hons) CS, Minor in Applied Math</span>
-            </div>
-            <div>
-              <span className={styles.label}>Graduation</span>
-              <span>Expected May 2029</span>
-            </div>
-            <div>
-              <span className={styles.label}>Academic Standing</span>
-              <span>GPA 3.5 / 4.3 · Full-Ride Academic Entry Scholar</span>
-            </div>
           </div>
         </div>
       </div>

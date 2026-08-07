@@ -19,9 +19,9 @@
   position: relative;
   font-size: clamp(2.4rem, 5.2vw, 5.8rem);
   font-weight: 500;
-
   line-height: 0.98;
   margin-bottom: clamp(32px, 4vw, 56px);
+  white-space: pre-wrap;
 }
 
 .spacer {

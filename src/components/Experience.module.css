@@ -19,8 +19,8 @@
 .title {
   font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 550;
-
   line-height: 0.88;
+  letter-spacing: 0.04em;
 }
 
 .title span { color: var(--red); }

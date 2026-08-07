@@ -18,8 +18,7 @@ const entries = [
     detail: "Kowloon, Hong Kong · Expected May 2029",
     bullets: [
       "Cumulative GPA: 3.5 / 4.3",
-      "Recipient of a Full-Ride Academic Entry Scholarship",
-      "Selected coursework: Data Structures, Object-Oriented Programming, Principles of Data Science, AI & Data Analytics, Discrete Mathematics, Linear Algebra",
+      "Full-Ride Academic Entry Scholarship Recipient",
     ],
     icon: "🎓",
     stat: "3.5",
@@ -29,13 +28,11 @@ const entries = [
     id: "symposium",
     period: "Nov 2025",
     color: "red" as const,
-    role: "Research Proposal Presenter · Data-Driven Educational Technology",
+    role: "Research Proposal Presenter",
     org: "PolyU Symposium on Innovations for a Sustainable Future",
     detail: "Hong Kong",
     bullets: [
-      "Presented a data-driven educational technology proposal centered on adaptive spaced repetition and measurable STEM knowledge retention.",
-      "Proposed a system that connects spaced-repetition scheduling with a quantitative learning-analytics framework.",
-      "Presented the system design, evaluation methodology, and measurable retention criteria to symposium judges and academic attendees.",
+      "Presented a data-driven educational technology proposal exploring adaptive spaced repetition and quantitative learning analytics for STEM retention.",
     ],
     icon: "🎤",
     stat: "60+",
@@ -49,9 +46,9 @@ const entries = [
     org: "Summer in Engineering and Applied Sciences (SEAS)",
     detail: "Quảng Bình, Vietnam",
     bullets: [
-      "Completed an intensive AI/ML summer school adapted from MIT Computer Science coursework, with mentorship involving researchers from MIT, Harvard, CERN, UIUC, and VinAI.",
-      "Collaborated on the original team flood-modeling prototype for Central Vietnam through exploratory data analysis, feature engineering, and early modeling.",
-      "After the summer school, independently re-engineered the prototype into the current DeepFlood system with basin-specific modeling, leakage-aware validation, and peak-sensitive training.",
+      "43 participants selected from 400+ applicants.",
+      "Completed an intensive AI/ML summer school adapted from MIT Computer Science coursework.",
+      "Collaborated on the original team flood-modeling prototype; independently re-engineered DeepFlood after the program.",
     ],
     icon: "🔬",
     stat: "43",
@@ -174,7 +171,7 @@ export const Experience = () => {
       <div className={`container ${styles.header}`}>
         <p className="eyebrow">03 / Experience</p>
         <h2 id="exp-title" className={styles.title}>
-          Learning, presenting, <span>and building beyond coursework.</span>
+          Along <span>the way.</span>
         </h2>
       </div>
 

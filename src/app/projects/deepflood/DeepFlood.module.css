@@ -12,7 +12,7 @@
   pointer-events: none;
   z-index: 0;
   background: linear-gradient(135deg, var(--blue), var(--red), var(--yellow), var(--green));
-  opacity: 0.9;
+  opacity: 0.35;
   mask-image: radial-gradient(circle 300px at var(--mouse-x, -1000px) var(--mouse-y, -1000px), black 10%, transparent), radial-gradient(black 1.5px, transparent 1.5px);
   mask-size: 100% 100%, 32px 32px;
   mask-composite: intersect;

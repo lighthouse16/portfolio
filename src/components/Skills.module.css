@@ -18,7 +18,7 @@
   font-size: clamp(3rem, 6.5vw, 6.8rem);
   font-weight: 550;
   line-height: 0.9;
-  letter-spacing: -0.045em;
+  letter-spacing: 0.04em;
 }
 
 .title span { color: var(--blue); }

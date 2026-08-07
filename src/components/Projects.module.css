@@ -9,11 +9,16 @@
 
 /* ── Heading ── */
 .heading {
-  display: grid;
-  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
-  gap: 48px;
-  align-items: start;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.titleContainer {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-bottom: 2.5rem;
+  width: 100%;
+  padding-inline: 1rem;
+  box-sizing: border-box;
 }
 
 .titleWrapper {
@@ -23,14 +28,19 @@
   font-weight: 550;
   line-height: 0.9;
   color: var(--ink);
+  width: 100%;
 }
 
 .lineLeft {
   text-align: left;
+  display: block;
+  width: 100%;
 }
 
 .lineRight {
   text-align: right;
+  display: block;
+  width: 100%;
 }
 
 .headingAccent {
