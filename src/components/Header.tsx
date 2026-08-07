@@ -27,12 +27,11 @@ export const Header = () => {
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setOpen(false);
-    if (pathname === "/") {
+    if (pathname === "/" && href.startsWith("#")) {
       e.preventDefault();
       const id = href.replace("#", "");
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: "smooth" });
-      // Clear hash cleanly in URL without reloading
       window.history.replaceState(null, "", "/");
     }
   };

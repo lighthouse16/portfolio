@@ -1,14 +1,15 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import styles from "./Footer.module.css";
 
 export const Footer = () => {
   const pathname = usePathname();
 
-  // Hide footer on case study pages
-  if (pathname && pathname.startsWith("/projects/")) {
+  // Hide footer on case study pages and contact page
+  if (pathname && (pathname.startsWith("/projects/") || pathname === "/contact")) {
     return null;
   }
 
@@ -16,11 +17,11 @@ export const Footer = () => {
     <footer id="contact" className={styles.footer}>
       <div className="container">
         <p className="eyebrow">06 / Contact</p>
-        <a className={styles.cta} href="mailto:haidang.trih@gmail.com">
+        <Link className={styles.cta} href="/contact">
           <span>Interested in models, data, or hard software problems?</span>
           <strong>Let&apos;s connect and build well.</strong>
           <ArrowUpRight aria-hidden="true" />
-        </a>
+        </Link>
         <div className={styles.bottom}>
           <p>Hai Dang Trinh · Kowloon, Hong Kong</p>
           <nav aria-label="Social links">
