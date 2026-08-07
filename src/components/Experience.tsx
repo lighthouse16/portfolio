@@ -15,44 +15,44 @@ const entries = [
     color: "blue" as const,
     role: "BSc (Hons) Computer Science · Minor in Applied Mathematics",
     org: "The Hong Kong Polytechnic University",
-    detail: "Kowloon, Hong Kong · Expected May 2029",
+    detail: "Hong Kong · Expected May 2029",
     bullets: [
-      "Cumulative GPA: 3.5 / 4.3",
-      "Full-Ride Academic Entry Scholarship Recipient",
+      "Full-Ride Academic Entry Scholarship recipient.",
+      "Selected coursework in Data Structures, OOP, Data Science, AI & Data Analytics, Discrete Mathematics, and Linear Algebra.",
     ],
     icon: "🎓",
     stat: "3.5",
     statLabel: "GPA",
   },
   {
-    id: "symposium",
-    period: "Nov 2025",
-    color: "red" as const,
-    role: "Research Proposal Presenter",
-    org: "PolyU Symposium on Innovations for a Sustainable Future",
-    detail: "Hong Kong",
-    bullets: [
-      "Presented a data-driven educational technology proposal exploring adaptive spaced repetition and quantitative learning analytics for STEM retention.",
-    ],
-    icon: "🎤",
-    stat: "60+",
-    statLabel: "Presenters",
-  },
-  {
     id: "seas",
     period: "Jul — Aug 2025",
     color: "green" as const,
-    role: "Participant · AI & Applications",
+    role: "Participant · AI/ML Summer Program",
     org: "Summer in Engineering and Applied Sciences (SEAS)",
     detail: "Quảng Bình, Vietnam",
     bullets: [
-      "43 participants selected from 400+ applicants.",
-      "Completed an intensive AI/ML summer school adapted from MIT Computer Science coursework.",
-      "Collaborated on the original team flood-modeling prototype; independently re-engineered DeepFlood after the program.",
+      "Completed an intensive AI/ML program adapted from MIT coursework, developing a team flood-modeling prototype through EDA, feature engineering, and spatiotemporal sequence modeling.",
+      "Presented the results to an international panel, then independently re-engineered the prototype into the current DeepFlood system.",
     ],
     icon: "🔬",
     stat: "43",
     statLabel: "of 400+",
+  },
+  {
+    id: "symposium",
+    period: "Nov 2025",
+    color: "red" as const,
+    role: "Research Proposal Presenter · Data-Driven Educational Technology",
+    org: "PolyU Symposium on Innovations for a Sustainable Future",
+    detail: "Hong Kong",
+    bullets: [
+      "Designed an AI-enabled educational technology framework combining adaptive spaced repetition, quantitative learning analytics, and end-to-end data flows for long-term STEM retention.",
+      "Defined the evaluation methodology and measurable retention metrics, then defended system feasibility and technical design choices before a faculty research panel.",
+    ],
+    icon: "🎤",
+    stat: "RESEARCH",
+    statLabel: "PRESENTER",
   },
 ];
 
@@ -213,22 +213,24 @@ export const Experience = () => {
                 aria-expanded={isOpen}
                 type="button"
               >
-                {/* stat badge */}
-                <div className={styles.statBadge} aria-hidden="true">
-                  <span
-                    className={styles.statValue}
-                    data-stat={e.stat}
-                  >
-                    {e.stat}
-                  </span>
-                  <span className={styles.statLabel}>{e.statLabel}</span>
-                </div>
+                <div className={styles.cardHeader}>
+                  <div className={styles.cardMain}>
+                    <span className={styles.period}>{e.period}</span>
+                    <h3 className={styles.role}>{e.org}</h3>
+                    <p className={styles.org}>{e.role}</p>
+                  </div>
 
-                {/* card content */}
-                <div className={styles.cardContent}>
-                  <span className={styles.period}>{e.period}</span>
-                  <h3 className={styles.role}>{e.org}</h3>
-                  <p className={styles.org}>{e.role}</p>
+                  {/* stat badge */}
+                  <div className={styles.statBadge} aria-hidden="true">
+                    <span
+                      className={styles.statValue}
+                      data-stat={e.stat}
+                    >
+                      {e.stat}
+                    </span>
+                    <span className={styles.statLabel}>{e.statLabel}</span>
+                  </div>
+                </div>
 
                   {/* expandable details */}
                   <div
@@ -261,7 +263,6 @@ export const Experience = () => {
                       <path d="M6 9l6 6 6-6" />
                     </svg>
                   </span>
-                </div>
 
                 {/* accent bar */}
                 <div className={styles.accentBar} aria-hidden="true" />
