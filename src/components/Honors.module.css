@@ -9,6 +9,19 @@
   padding-bottom: clamp(56px, 7vw, 90px);
 }
 
+.headerGrid {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+  gap: 48px;
+}
+
+@media (max-width: 720px) {
+  .headerGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
 .title {
   font-size: clamp(3rem, 7vw, 7rem);
   font-weight: 550;

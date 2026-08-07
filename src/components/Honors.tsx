@@ -129,10 +129,10 @@ export const Honors = () => {
       aria-labelledby="honors-title"
     >
       <div className={styles.intro}>
-        <div className="container">
+        <div className={`container ${styles.headerGrid}`}>
           <p className="eyebrow">05 / Honors</p>
           <h2 id="honors-title" className={styles.title}>
-            Recognition.
+            Recognition &amp; <span>Awards.</span>
           </h2>
         </div>
       </div>

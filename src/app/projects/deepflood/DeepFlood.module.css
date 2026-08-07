@@ -193,6 +193,249 @@
   transform: translateY(16px);
 }
 
+/* ── Editorial Visual Forms ── */
+
+/* 1. Architecture Stack (Layers) */
+.architectureStack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.architectureLayer {
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 4px;
+}
+
+.layerHeader {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.layerItems {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.layerArrow {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  user-select: none;
+  margin: -4px 0;
+}
+
+/* 2. Process Flow (Horizontal / Vertical) */
+.editorialDiagram {
+  margin: 32px 0;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 4px;
+}
+
+.diagramFlowHorizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.diagramStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  min-width: 75px;
+}
+
+.diagramLabel {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.diagramArrow {
+  color: var(--muted);
+  font-size: 0.95rem;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* 3. Reliability Diagram */
+.reliabilityDiagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 4px;
+}
+
+.reliabilityNode {
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: center;
+  background: var(--paper);
+  width: 100%;
+  max-width: 380px;
+}
+
+.reliabilitySubNode {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 4px;
+  font-weight: normal;
+}
+
+/* 4. Editorial Tables */
+.editorialTableWrapper {
+  overflow-x: auto;
+  margin: 28px 0;
+}
+
+.editorialTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.editorialTable th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.editorialTable td {
+  padding: 12px 14px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.editorialTable td strong {
+  color: var(--ink);
+}
+
+.editorialTable .numCol {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* 5. Editorial Pull Quote */
+.pullQuote {
+  margin: 32px 0;
+  padding: 16px 0 16px 24px;
+  border-left: 2px solid var(--ink);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--ink);
+  font-style: normal;
+}
+
+.pullQuote p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.15rem;
+}
+
+/* 6. Math / Formula Blocks */
+.formulaBlock {
+  margin: 28px 0;
+  padding: 20px 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.1rem;
+  overflow-x: auto;
+}
+
+.formulaSubtext {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* 7. Chronological Split Viz */
+.chronoSplit {
+  margin: 28px 0;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 4px;
+}
+
+.chronoHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.chronoBar {
+  display: flex;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  font-size: 0.85rem;
+}
+
+.chronoTrain {
+  flex: 7;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  color: var(--ink);
+  font-weight: 500;
+  border-right: 1px solid var(--line);
+}
+
+.chronoVal {
+  flex: 3;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.chronoCaption {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 /* ── Responsive ── */
 @media (max-width: 1040px) {
   .gridContainer {
@@ -201,5 +444,37 @@
 
   .sidebar {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .diagramFlowHorizontal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .diagramStep {
+    min-width: 0;
+    padding: 6px 0;
+  }
+
+  .diagramArrow {
+    text-align: center;
+    transform: rotate(90deg);
+    margin: 2px 0;
+  }
+
+  .chronoBar {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .chronoTrain, .chronoVal {
+    padding: 8px 12px;
+  }
+
+  .chronoTrain {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
   }
 }

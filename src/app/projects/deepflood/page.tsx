@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowLeft } from "lucide-react";
 import LineSidebar from "@/components/LineSidebar";
+import { Math } from "@/components/Math";
 import styles from "./DeepFlood.module.css";
 
 gsap.registerPlugin(useGSAP);
@@ -14,11 +15,13 @@ gsap.registerPlugin(useGSAP);
 const sections = [
   { label: "Origin", id: "origin" },
   { label: "Problem", id: "problem" },
-  { label: "Method", id: "method" },
+  { label: "Data & Method", id: "data-method" },
+  { label: "Re-engineering", id: "re-engineering" },
   { label: "Validation", id: "validation" },
   { label: "Results", id: "results" },
+  { label: "Interpretation", id: "interpretation" },
   { label: "Limitations", id: "limitations" },
-  { label: "Demo", id: "demo" },
+  { label: "Artifact", id: "artifact" },
 ];
 
 export default function DeepFloodCaseStudy() {
@@ -49,7 +52,7 @@ export default function DeepFloodCaseStudy() {
 
   return (
     <main className={styles.page} ref={pageRef}>
-      <div className={styles.dotGrid} />
+      <div className={styles.dotGrid} aria-hidden="true" />
       <div className={`container ${styles.gridContainer}`}>
         
         {/* Main Content Column */}
@@ -76,6 +79,9 @@ export default function DeepFloodCaseStudy() {
                 ↗ live dashboard
               </a>
             </div>
+            <div className={styles.metaRow} style={{ marginTop: "10px" }}>
+              <code>Python · TensorFlow/Keras · Pandas · Scikit-learn</code>
+            </div>
           </header>
 
           <article className={styles.postProse}>
@@ -83,104 +89,236 @@ export default function DeepFloodCaseStudy() {
               <a href="#origin" className={styles.headingAnchor}>link</a>Origin
             </h2>
             <p className="reveal">
-              DeepFlood originated as a team prototype during the <strong>Summer in Engineering and Applied Sciences (SEAS)</strong> program in July–August 2025.
+              DeepFlood started during the Summer in Engineering and Applied Sciences (SEAS) 2025 program as a team exploration of flood modeling.
             </p>
             <p className="reveal">
-              Following the program, I independently re-engineered the system around a core question: <em>Can a basin-specific time-series model preserve rare local streamflow extremes while eliminating data leakage in validation?</em>
+              After the program, the system was independently rebuilt around a more rigorous research question:
             </p>
+            <blockquote className={`${styles.pullQuote} reveal`}>
+              <p>
+                Can a basin-specific time-series model preserve rare local streamflow extremes without leaking future information into validation?
+              </p>
+            </blockquote>
             <p className="reveal">
-              DeepFlood is a <strong>same-day streamflow nowcasting prototype</strong> for Vietnam&apos;s Long Đại basin, using day-T meteorology and past river-flow lags. It is not an operational multi-day early-warning system.
+              The result is a same-day streamflow nowcasting prototype for the Long Đại basin in Quảng Bình, Vietnam.
             </p>
 
             <h2 id="problem" className="reveal">
               <a href="#problem" className={styles.headingAnchor}>link</a>Problem
             </h2>
-            <ul className="reveal">
-              <li><strong>Local scale vs global range:</strong> Long Đại&apos;s recorded peak reaches ~7,990.3 m³/s. Generic multi-basin models smooth out local extremes to optimize global error.</li>
-              <li><strong>Rare-event imbalance:</strong> Normal flow dominates the dataset, leading unweighted models to underpredict rare, high-consequence flood events.</li>
-              <li><strong>Temporal data leakage:</strong> Random dataset splitting or fitting scalers across the full timeline leaks future information into historical validation.</li>
-            </ul>
+            <p className="reveal">
+              Extreme hydrological events create an imbalanced regression problem. Most observations represent normal flow conditions, while the most important events are rare peaks.
+            </p>
+            <p className="reveal">
+              Time-series experiments also require careful validation because random splits and unsafe preprocessing can introduce future information into historical evaluation.
+            </p>
 
-            <h2 id="method" className="reveal">
-              <a href="#method" className={styles.headingAnchor}>link</a>Method
+            <h2 id="data-method" className="reveal">
+              <a href="#data-method" className={styles.headingAnchor}>link</a>Data &amp; Method
             </h2>
             <p className="reveal">
-              The model ingests <strong>7-day sequences</strong> composed of <strong>39 engineered hydrometeorological signals</strong> (precipitation accumulation over 3–60 days, strictly lagged flow over 1–14 days, rolling stats, and seasonal encodings).
+              Each prediction uses the input sequence definition:
+            </p>
+            <div className={`${styles.formulaBlock} reveal`}>
+              <Math math="X_t \in \mathbb{R}^{7 \times 39}" block />
+              <div className={styles.formulaSubtext}>
+                where 7 = temporal sequence length (days) and 39 = engineered hydrometeorological features
+              </div>
+            </div>
+
+            <p className="reveal">
+              The sequence is processed through a sequential deep learning architecture:
+            </p>
+            <div className={`${styles.formulaBlock} reveal`}>
+              <Math math="X_t \rightarrow \mathrm{Conv1D} \rightarrow \mathrm{BiLSTM} \rightarrow \mathrm{BiLSTM} \rightarrow \mathrm{Temporal\ Attention} \rightarrow \hat{Q}_t" block />
+            </div>
+
+            <p className="reveal">
+              The pipeline relies on strictly lagged streamflow features, train-only scaling, temporal sequence modeling, and peak-aware regression.
+            </p>
+
+            <h2 id="re-engineering" className="reveal">
+              <a href="#re-engineering" className={styles.headingAnchor}>link</a>Re-engineering
+            </h2>
+            <p className="reveal">
+              The independent work focused on removing future-data leakage, rebuilding feature generation, enforcing chronological validation, adding peak-sensitive weighting, and creating reproducible evaluation artifacts.
             </p>
             <p className="reveal">
-              <strong>Neural architecture (TensorFlow/Keras):</strong>
+              To penalize large flood errors during model training, samples are weighted dynamically based on flow magnitude:
             </p>
-            <ol className="reveal">
-              <li><strong>Conv1D (64 filters):</strong> Extracts short-term temporal patterns and rates of change.</li>
-              <li><strong>Bidirectional LSTM (128 &amp; 64 units):</strong> Captures sequential dependencies across the time window.</li>
-              <li><strong>Temporal Attention:</strong> Weighs informative timesteps before passing to the dense regression head.</li>
-            </ol>
+            <div className={`${styles.formulaBlock} reveal`}>
+              <Math math="w_i = 1 + 30\left(\frac{y_i}{y_{\max,\mathrm{train}}}\right)" block />
+              <div className={styles.formulaSubtext} style={{ marginTop: "12px" }}>
+                <Math math="1 \le w_i \le 31" /> &nbsp;within the training target range
+              </div>
+            </div>
             <p className="reveal">
-              <strong>Peak-aware sample weighting:</strong> Training samples are weighted by magnitude using <code>weight = 1 + 30 × (y / y_max)</code>, penalizing large flood errors up to ~31×.
+              The purpose of sample weighting is to make large streamflow prediction errors up to 31× more costly during training optimization.
             </p>
 
             <h2 id="validation" className="reveal">
               <a href="#validation" className={styles.headingAnchor}>link</a>Validation
             </h2>
-            <ul className="reveal">
-              <li><strong>Chronological holdout:</strong> 70/30 split in chronological order (final 30% = 107 validation observations). Because this period informed checkpoint selection, it is reported as a <em>validation period</em>, not an independent test set.</li>
-              <li><strong>Train-only scaling:</strong> Feature and target scalers are fitted exclusively on the 70% training split to prevent future range leakage.</li>
-              <li><strong>Strictly lagged flow:</strong> Day-T streamflow is never an input to its own estimation.</li>
-            </ul>
+            <p className="reveal">
+              To prevent temporal leakage, evaluation strictly enforces a chronological split:
+            </p>
 
-            <h2 id="results" className="reveal">
-              <a href="#results" className={styles.headingAnchor}>link</a>Results
-            </h2>
-            <div className="reveal" style={{ overflowX: "auto", margin: "16px 0" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+            <div className={`${styles.chronoSplit} reveal`}>
+              <div className={styles.chronoHeader}>
+                <span>EARLIER</span>
+                <span>LATER</span>
+              </div>
+              <div className={styles.chronoBar}>
+                <div className={styles.chronoTrain}>Training period — 70%</div>
+                <div className={styles.chronoVal}>Validation period — 30%</div>
+              </div>
+              <div className={styles.chronoCaption}>
+                Validation period contains 107 chronological observations.
+              </div>
+            </div>
+
+            <div className={`${styles.editorialTableWrapper} reveal`}>
+              <table className={styles.editorialTable}>
                 <thead>
-                  <tr style={{ borderBottom: "1px solid var(--line)" }}>
-                    <th style={{ padding: "8px 12px" }}>Metric</th>
-                    <th style={{ padding: "8px 12px", textAlign: "right" }}>DeepFlood</th>
-                    <th style={{ padding: "8px 12px", textAlign: "right" }}>Persistence Baseline</th>
+                  <tr>
+                    <th>Safeguard</th>
+                    <th>Prevents</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style={{ borderBottom: "1px solid var(--line)" }}>
-                    <td style={{ padding: "8px 12px" }}>MAE</td>
-                    <td style={{ padding: "8px 12px", textAlign: "right" }}>130.8 m³/s</td>
-                    <td style={{ padding: "8px 12px", textAlign: "right" }}>128.1 m³/s</td>
-                  </tr>
-                  <tr style={{ borderBottom: "1px solid var(--line)" }}>
-                    <td style={{ padding: "8px 12px" }}>RMSE</td>
-                    <td style={{ padding: "8px 12px", textAlign: "right" }}>148.1 m³/s</td>
-                    <td style={{ padding: "8px 12px", textAlign: "right" }}>314.3 m³/s</td>
+                  <tr>
+                    <td><strong>Chronological split</strong></td>
+                    <td>Future observations entering training set</td>
                   </tr>
                   <tr>
-                    <td style={{ padding: "8px 12px" }}>NSE</td>
-                    <td style={{ padding: "8px 12px", textAlign: "right" }}>0.726</td>
-                    <td style={{ padding: "8px 12px", textAlign: "right" }}>-0.223</td>
+                    <td><strong>Train-only scaling</strong></td>
+                    <td>Future distribution information entering preprocessing scalers</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Strictly lagged flow</strong></td>
+                    <td>Day-T target leakage into input features</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
+            <h2 id="results" className="reveal">
+              <a href="#results" className={styles.headingAnchor}>link</a>Results
+            </h2>
             <p className="reveal">
-              <strong>Trade-off analysis:</strong> Persistence slightly leads on MAE because DeepFlood&apos;s peak-weighted objective sacrifices minor average precision on normal-flow days. However, DeepFlood substantially improves RMSE (148.1 vs 314.3) and NSE (0.726 vs -0.223), proving far superior at capturing major flow variations.
+              Performance comparison across the 107-observation validation period:
+            </p>
+            <div className={`${styles.editorialTableWrapper} reveal`}>
+              <table className={styles.editorialTable}>
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th className={styles.numCol}>DeepFlood</th>
+                    <th className={styles.numCol}>Persistence Baseline</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>MAE</strong></td>
+                    <td className={styles.numCol}>130.8 m³/s</td>
+                    <td className={styles.numCol}>128.1 m³/s</td>
+                  </tr>
+                  <tr>
+                    <td><strong>RMSE</strong></td>
+                    <td className={styles.numCol}>148.1 m³/s</td>
+                    <td className={styles.numCol}>314.3 m³/s</td>
+                  </tr>
+                  <tr>
+                    <td><strong>NSE</strong></td>
+                    <td className={styles.numCol}>0.726</td>
+                    <td className={styles.numCol}>-0.223</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p className="reveal">
+              Validation peak estimation performance:
+            </p>
+            <div className={`${styles.editorialTableWrapper} reveal`}>
+              <table className={styles.editorialTable}>
+                <thead>
+                  <tr>
+                    <th>Validation Peak Metric</th>
+                    <th className={styles.numCol}>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Observed peak</strong></td>
+                    <td className={styles.numCol}>2,576.39 m³/s</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Predicted peak</strong></td>
+                    <td className={styles.numCol}>2,800.68 m³/s</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Magnitude error</strong></td>
+                    <td className={styles.numCol}>+8.7%</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Timing lag</strong></td>
+                    <td className={styles.numCol}>0 days</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="interpretation" className="reveal">
+              <a href="#interpretation" className={styles.headingAnchor}>link</a>Interpretation
+            </h2>
+            <p className="reveal">
+              DeepFlood does not outperform persistence on every metric. Persistence achieves slightly lower MAE, while DeepFlood substantially improves RMSE and NSE.
             </p>
             <p className="reveal">
-              <strong>Holdout peak:</strong> Observed peak 2,576.39 m³/s vs predicted 2,800.68 m³/s (+8.7% magnitude error, 0-day timing lag).
+              This reflects the intended trade-off: improve extreme-event sensitivity while accepting a small increase in average absolute error.
             </p>
 
             <h2 id="limitations" className="reveal">
               <a href="#limitations" className={styles.headingAnchor}>link</a>Limitations
             </h2>
-            <ul className="reveal">
-              <li>No untouched independent test set (validation used for early stopping).</li>
-              <li>No multi-day forecast lead time.</li>
-              <li>No operational flood-warning deployment claim.</li>
-              <li>No cross-basin generalizability claim without retraining/re-calibration.</li>
-            </ul>
+            <div className={`${styles.editorialTableWrapper} reveal`}>
+              <table className={styles.editorialTable}>
+                <thead>
+                  <tr>
+                    <th>Evidence supports</th>
+                    <th>Evidence does NOT establish</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Same-day Long Đại validation</td>
+                    <td>Multi-day forecasting</td>
+                  </tr>
+                  <tr>
+                    <td>Chronological holdout evaluation</td>
+                    <td>Untouched independent test performance</td>
+                  </tr>
+                  <tr>
+                    <td>Basin-specific results</td>
+                    <td>Cross-basin generalization</td>
+                  </tr>
+                  <tr>
+                    <td>Static evaluation artifact</td>
+                    <td>Operational warning deployment</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-            <h2 id="demo" className="reveal">
-              <a href="#demo" className={styles.headingAnchor}>link</a>Demo
+            <h2 id="artifact" className="reveal">
+              <a href="#artifact" className={styles.headingAnchor}>link</a>Artifact
             </h2>
             <p className="reveal">
-              An inspectable evaluation dashboard displaying pre-computed hydrographs, residuals, and sensitivity controls is available live at <code>https://deepflood.haidangtrih.me/</code>. It is a static evaluation artifact, not an online inference server.
+              Interactive evaluation dashboard: <a href="https://deepflood.haidangtrih.me/" target="_blank" rel="noreferrer" className={styles.metaLink}><code>https://deepflood.haidangtrih.me/</code></a>
+            </p>
+            <p className="reveal">
+              The dashboard visualizes pre-computed evaluation results and is not an operational inference service.
             </p>
           </article>
         </div>

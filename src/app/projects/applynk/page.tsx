@@ -13,12 +13,12 @@ gsap.registerPlugin(useGSAP);
 
 const sections = [
   { label: "Context", id: "context" },
-  { label: "Problem", id: "problem" },
-  { label: "Architecture", id: "architecture" },
-  { label: "AI Pipeline", id: "ai-pipeline" },
+  { label: "System", id: "system" },
+  { label: "Pipeline", id: "pipeline" },
+  { label: "Product", id: "product" },
   { label: "Reliability", id: "reliability" },
+  { label: "Decisions", id: "decisions" },
   { label: "Ownership", id: "ownership" },
-  { label: "Trade-offs", id: "trade-offs" },
   { label: "Status", id: "status" },
 ];
 
@@ -59,50 +59,189 @@ export default function AppLynkCaseStudy() {
                 ↗ live website
               </a>
             </div>
+            <div className={styles.metaRow} style={{ marginTop: "10px" }}>
+              <code>Python · FastAPI · Next.js 16 · PostgreSQL · pgvector · Docker · GitHub Actions</code>
+            </div>
           </header>
 
           <article className={styles.postProse}>
             <h2 id="context" className="reveal"><a href="#context" className={styles.headingAnchor}>link</a>Context</h2>
-            <p className="reveal">AppLynk is an independent discovery platform for Vietnamese students and young professionals searching for scholarships, competitions, internships, workshops, and academic programs.</p>
-            <p className="reveal">Opportunities are scattered across organization websites, social posts, PDFs, and portals with inconsistent formats and deadlines. AppLynk automates ingestion and structures the catalog so users can easily search and compare opportunities.</p>
+            <p className="reveal">
+              For students, finding a good opportunity is often less about whether it exists and more about whether they happen to see it.
+            </p>
+            <p className="reveal">
+              Scholarships, competitions, internships, exchange programs, workshops, and volunteering opportunities are distributed across university websites, social posts, organization pages, PDFs, and application portals.
+            </p>
+            <p className="reveal">
+              AppLynk transforms fragmented opportunity information into a structured discovery system:
+            </p>
 
-            <h2 id="problem" className="reveal"><a href="#problem" className={styles.headingAnchor}>link</a>Problem</h2>
-            <ul className="reveal">
-              <li><strong>Heterogeneous sources:</strong> Web pages, Facebook posts, announcements, and PDFs present eligibility and facts differently.</li>
-              <li><strong>Unreliable structure:</strong> Deadlines, locations, eligibility rules, and links are often missing or hidden in prose.</li>
-              <li><strong>Duplicates &amp; cross-posts:</strong> The same opportunity frequently appears across multiple channels in slightly different formats.</li>
-              <li><strong>Expensive inference:</strong> LLM extraction and embedding generation are valuable, but should not be wasted on noisy or repeated data.</li>
-            </ul>
+            <h2 id="system" className="reveal"><a href="#system" className={styles.headingAnchor}>link</a>System</h2>
+            <p className="reveal">
+              The system separates uncertain source material from published product data.
+            </p>
 
-            <h2 id="architecture" className="reveal"><a href="#architecture" className={styles.headingAnchor}>link</a>Architecture</h2>
-            <p className="reveal">AppLynk pairs a user-facing bilingual Next.js 16 application with a Python/FastAPI backend system.</p>
-            <p className="reveal">The core data pipeline follows: <strong>Discover → Collect → Filter → Deduplicate → Extract → Normalize → Publish → Index → Retrieve</strong></p>
+            <div className={`${styles.architectureStack} reveal`}>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Sources</div>
+                <div className={styles.layerItems}>Websites · Social posts · PDFs · User submissions</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Processing</div>
+                <div className={styles.layerItems}>Filter · Deduplicate · Extract · Normalize · Enrich</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Data</div>
+                <div className={styles.layerItems}>Raw posts · Published opportunities · Embeddings · Profiles</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Product</div>
+                <div className={styles.layerItems}>Discovery · Search · Ranking · Collections · Bookmarks</div>
+              </div>
+            </div>
 
-            <h2 id="ai-pipeline" className="reveal"><a href="#ai-pipeline" className={styles.headingAnchor}>link</a>AI Pipeline</h2>
-            <ul className="reveal">
-              <li><strong>Filter before LLM:</strong> TF-IDF relevance filtering screens out off-domain documents, while MinHash LSH identifies near-duplicate raw content before any LLM calls.</li>
-              <li><strong>Structured extraction:</strong> Relevant text is passed to LLM extraction workflows enforcing bounded JSON schemas for validated fields.</li>
-              <li><strong>Semantic retrieval:</strong> Generates 768-dimensional embeddings stored in PostgreSQL via <code>pgvector</code>, supporting natural-language search alongside structured SQL filters.</li>
-              <li><strong>School directory API:</strong> Serves autocomplete suggestions across 3,185 Vietnamese high schools and universities via a server endpoint to keep client bundles lean.</li>
-            </ul>
+            <p className="reveal">
+              Raw crawler output is treated as evidence, not automatically as product content.
+            </p>
+
+            <h2 id="pipeline" className="reveal"><a href="#pipeline" className={styles.headingAnchor}>link</a>Pipeline</h2>
+            <div className={`${styles.editorialDiagram} reveal`}>
+              <div className={styles.diagramFlowHorizontal}>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Discover</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Collect</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Filter</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Deduplicate</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Extract</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Normalize</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Publish</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Index</span></div>
+                <div className={styles.diagramArrow}>→</div>
+                <div className={styles.diagramStep}><span className={styles.diagramLabel}>Retrieve</span></div>
+              </div>
+            </div>
+
+            <p className="reveal">
+              <strong>Cheap deterministic filtering before inference:</strong> TF-IDF relevance filtering screens out off-domain documents, while MinHash LSH identifies near-duplicate raw content before any LLM calls.
+            </p>
+            <p className="reveal">
+              <strong>Schema-constrained extraction:</strong> LLM workflows extract bounded factual fields (deadlines, eligibility, provider details) instead of generating uncontrolled prose.
+            </p>
+            <p className="reveal">
+              <strong>Semantic + structured retrieval:</strong> 768-dimensional embeddings stored with PostgreSQL + <code>pgvector</code> complement structured SQL filters to balance intent matching with strict constraints.
+            </p>
+
+            <h2 id="product" className="reveal"><a href="#product" className={styles.headingAnchor}>link</a>Product</h2>
+            <p className="reveal">
+              AppLynk delivers a live discovery experience tailored for Vietnamese students and young professionals, featuring bilingual (Vietnamese / English) interfaces and rapid autocomplete across 3,185 verified education institutions.
+            </p>
+            <div className={`${styles.editorialTableWrapper} reveal`}>
+              <table className={styles.editorialTable}>
+                <thead>
+                  <tr>
+                    <th>Capability</th>
+                    <th>Implementation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Bilingual Discovery</strong></td>
+                    <td>Vietnamese / English catalog navigation and search interface</td>
+                  </tr>
+                  <tr>
+                    <td><strong>School Directory API</strong></td>
+                    <td>Server-side autocomplete suggestions across 3,185 Vietnamese high schools and universities</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hybrid Retrieval</strong></td>
+                    <td>Combines strict SQL metadata filtering with vector similarity (768-d pgvector embeddings)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <h2 id="reliability" className="reveal"><a href="#reliability" className={styles.headingAnchor}>link</a>Reliability</h2>
-            <p className="reveal">Background collection, extraction, and indexing are handled by <strong>seven specialized asynchronous workers</strong>.</p>
-            <p className="reveal">Rather than introducing heavyweight message queues, tasks are coordinated atomically in PostgreSQL using worker leases, heartbeats, and stale-task recovery. Scheduled crawling workflows run on six-hour cycles via GitHub Actions.</p>
+            <p className="reveal">
+              Seven asynchronous workers coordinate ingestion without external queue dependencies:
+            </p>
+
+            <div className={`${styles.reliabilityDiagram} reveal`}>
+              <div className={styles.reliabilityNode}>
+                Scheduled crawlers
+                <div className={styles.reliabilitySubNode}>Six-hour ingestion cycles via GitHub Actions</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.reliabilityNode}>
+                PostgreSQL task queue
+                <div className={styles.reliabilitySubNode}>Atomic state transitions &amp; transactional ownership</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.reliabilityNode}>Scrape → Extract → Publish</div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.reliabilityNode}>Translate · Classify · Index</div>
+              <div className={styles.layerArrow} style={{ marginTop: "4px" }}>↳ Stale Reaper recovers abandoned leases</div>
+            </div>
+
+            <p className="reveal">
+              Worker leases, heartbeats, and stale-task recovery prevent abandoned tasks and duplicate processing across all seven background execution nodes.
+            </p>
+
+            <h2 id="decisions" className="reveal"><a href="#decisions" className={styles.headingAnchor}>link</a>Decisions</h2>
+            <div className={`${styles.editorialTableWrapper} reveal`}>
+              <table className={styles.editorialTable}>
+                <thead>
+                  <tr>
+                    <th>Decision</th>
+                    <th>Why</th>
+                    <th>Cost / Trade-off</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Filter before inference</strong></td>
+                    <td>Reduce unnecessary model calls</td>
+                    <td>Additional pipeline complexity</td>
+                  </tr>
+                  <tr>
+                    <td><strong>PostgreSQL-backed queue</strong></td>
+                    <td>Transactional ownership control</td>
+                    <td>Less suitable than dedicated brokers at very large scale</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Separate raw and published data</strong></td>
+                    <td>Preserve provenance</td>
+                    <td>More explicit lifecycle management</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Semantic + structured retrieval</strong></td>
+                    <td>Combine meaning and constraints</td>
+                    <td>Two retrieval approaches</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <h2 id="ownership" className="reveal"><a href="#ownership" className={styles.headingAnchor}>link</a>Ownership</h2>
-            <p className="reveal">AppLynk is an end-to-end independent build across product design, full-stack web development, data pipeline engineering, vector retrieval integration, and deployment configuration (Docker / Render / GitHub Actions).</p>
-
-            <h2 id="trade-offs" className="reveal"><a href="#trade-offs" className={styles.headingAnchor}>link</a>Trade-offs</h2>
-            <ul className="reveal">
-              <li><strong>Filter before inference:</strong> Increases pipeline steps but prevents wasting expensive LLM tokens on non-opportunity or duplicate content.</li>
-              <li><strong>PostgreSQL task queue:</strong> Keeps task management transactional and simple for current scale without adding complex external queue infrastructure.</li>
-              <li><strong>Separate raw &amp; published storage:</strong> Maintains clean data lineage and prevents raw crawler artifacts from exposing unverified data to users.</li>
-              <li><strong>Additive personalization:</strong> Profile signals boost relevance ranking without hiding or gating any catalog entries.</li>
-            </ul>
+            <p className="reveal">
+              Independent end-to-end build covering frontend application, backend services, ingestion pipeline, LLM extraction workflow, database design, vector retrieval, and deployment automation.
+            </p>
 
             <h2 id="status" className="reveal"><a href="#status" className={styles.headingAnchor}>link</a>Status</h2>
-            <p className="reveal">AppLynk is live at <code>https://applynk.haidangtrih.me/en</code> and under active development. Core ingestion, extraction, vector retrieval, and user flows are implemented; source coverage and ranking refinements remain ongoing.</p>
+            <p className="reveal">
+              Live product: <a href="https://applynk.haidangtrih.me/en" target="_blank" rel="noreferrer" className={styles.metaLink}><code>https://applynk.haidangtrih.me/en</code></a>
+            </p>
+            <p className="reveal">
+              Active development focused on expanding sources, improving ranking, and refining retrieval quality.
+            </p>
           </article>
         </div>
 

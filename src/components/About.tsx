@@ -45,14 +45,14 @@ export const About = () => {
           <h2 id="about-title" className={styles.statement} data-reveal>
             {/* Invisible spacer to reserve height and prevent layout shift */}
             <span aria-hidden="true" className={styles.spacer}>
-              {"Machine learning,\ndata systems & software."}
+              {"I build software where\nmodels, data, and systems meet."}
             </span>
             
             <div className={styles.typingWrapper}>
               <TextType
                 text={[
                   "Between models\nand systems.",
-                  "Machine learning,\ndata systems & software.",
+                  "I build software where\nmodels, data, and systems meet.",
                   "Grounded in\nquantitative engineering."
                 ]}
                 typingSpeed={45}
@@ -66,10 +66,13 @@ export const About = () => {
           </h2>
           <div className={styles.bio} data-reveal>
             <p>
-              I&apos;m a Computer Science student at The Hong Kong Polytechnic University, minoring in Applied Mathematics.
+              I&apos;m a Computer Science student at The Hong Kong Polytechnic University, with a minor in Applied Mathematics.
             </p>
             <p>
-              I work across machine learning, data systems, and software engineering, with a growing interest in quantitative and FinTech applications.
+              I work across machine learning, data systems, and software engineering, building solutions where quantitative reasoning meets real world constraints.
+            </p>
+            <p>
+              My interests span AI/ML, quantitative engineering, FinTech, and reliable software systems.
             </p>
           </div>
         </div>

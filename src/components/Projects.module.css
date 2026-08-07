@@ -8,17 +8,23 @@
 }
 
 /* ── Heading ── */
-.heading {
-  margin-bottom: 1.5rem;
+.headerGrid {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+  gap: 48px;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 720px) {
+  .headerGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 .titleContainer {
-  max-width: 900px;
-  margin-inline: auto;
   margin-bottom: 2.5rem;
   width: 100%;
-  padding-inline: 1rem;
-  box-sizing: border-box;
 }
 
 .titleWrapper {

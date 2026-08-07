@@ -35,15 +35,15 @@ export const Projects = () => {
       className={styles.section}
       aria-labelledby="projects-title"
     >
-      <div className={`container ${styles.heading}`}>
+      <div className={`container ${styles.headerGrid}`}>
         <p className="eyebrow">04 / Projects</p>
-      </div>
-
-      <div className={styles.titleContainer}>
-        <h2 id="projects-title" className={styles.titleWrapper}>
-          <span className={styles.lineLeft}>Built with intent.</span>
-          <span className={`${styles.headingAccent} ${styles.lineRight}`}>Made to move.</span>
-        </h2>
+        <div className={styles.titleContainer}>
+          <h2 id="projects-title" className={styles.titleWrapper}>
+            <span>
+              Selected <span className={styles.headingAccent}>work.</span>
+            </span>
+          </h2>
+        </div>
       </div>
 
       <ScrollStack useWindowScroll={true} stackPosition="26%">
