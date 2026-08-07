@@ -1,6 +1,6 @@
 .about {
   position: relative;
-  padding: clamp(80px, 12vw, 140px) 0;
+  padding: clamp(80px, 12vw, 140px) 0 clamp(40px, 6vw, 80px);
   scroll-margin-top: calc(-1 * clamp(80px, 12vw, 140px));
   overflow: hidden;
 }
@@ -43,7 +43,6 @@
   display: grid;
   grid-template-columns: minmax(0, 760px);
   gap: 18px;
-  margin-bottom: clamp(32px, 4vw, 48px);
 }
 
 .bio p {

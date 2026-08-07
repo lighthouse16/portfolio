@@ -105,16 +105,28 @@ export const Skills = () => {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 861px) and (prefers-reduced-motion: no-preference)", () => {
-        gsap.set(panels, { autoAlpha: 0, y: 28, pointerEvents: "none" });
+        gsap.set(panels, { autoAlpha: 0, y: 24, pointerEvents: "none" });
         gsap.set(panels[0], { autoAlpha: 1, y: 0, pointerEvents: "auto" });
 
+        // Position indicator under active tab initially
+        const firstTab = tabRefs.current[0];
+        if (firstTab && indicatorRef.current) {
+          gsap.set(indicatorRef.current, {
+            x: firstTab.offsetLeft,
+            y: firstTab.offsetTop,
+            width: firstTab.offsetWidth,
+            height: firstTab.offsetHeight,
+          });
+        }
+
+        const N = groups.length - 1;
         const timeline = gsap.timeline({ paused: true });
-        groups.slice(1).forEach((_, index) => {
-          const position = index + 1;
+        for (let i = 0; i < N; i++) {
+          const switchTime = i + 1;
           timeline
-            .to(panels[index], { autoAlpha: 0, y: -24, pointerEvents: "none", duration: 0.28 }, position - 0.28)
-            .to(panels[position], { autoAlpha: 1, y: 0, pointerEvents: "auto", duration: 0.38 }, position - 0.02);
-        });
+            .to(panels[i], { autoAlpha: 0, y: -20, pointerEvents: "none", duration: 0.2 }, switchTime - 0.2)
+            .to(panels[i + 1], { autoAlpha: 1, y: 0, pointerEvents: "auto", duration: 0.2 }, switchTime);
+        }
 
         triggerRef.current = ScrollTrigger.create({
           id: "skills-tabs",
@@ -123,30 +135,33 @@ export const Skills = () => {
             const sm = parseFloat(window.getComputedStyle(sectionRef.current!).scrollMarginTop) || 0;
             return `top ${sm + 92}px`;
           },
-          end: () => `+=${window.innerHeight * (groups.length - 1)}`,
+          end: () => `+=${window.innerHeight * 1.2}`,
           pin: true,
-          scrub: 0.6,
+          scrub: 0.5,
           animation: timeline,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const next = Math.min(groups.length - 1, Math.round(self.progress * (groups.length - 1)));
-            
-            // Native DOM manipulation to avoid React re-render jank
+            const t = self.progress * (groups.length - 1);
+            let next = 0;
+            if (t >= 2.9) next = 3;
+            else if (t >= 1.9) next = 2;
+            else if (t >= 0.9) next = 1;
+
             tabRefs.current.forEach((tab, idx) => {
               if (!tab) return;
               if (idx === next) {
                 tab.classList.add(styles.tabActive);
                 tab.setAttribute("aria-selected", "true");
-                
+
                 if (indicatorRef.current) {
                   gsap.to(indicatorRef.current, {
                     x: tab.offsetLeft,
                     y: tab.offsetTop,
                     width: tab.offsetWidth,
                     height: tab.offsetHeight,
-                    duration: 0.35,
-                    ease: "power3.out",
-                    overwrite: "auto"
+                    duration: 0.25,
+                    ease: "power2.out",
+                    overwrite: "auto",
                   });
                 }
               } else {

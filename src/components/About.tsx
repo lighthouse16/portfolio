@@ -45,15 +45,15 @@ export const About = () => {
           <h2 id="about-title" className={styles.statement} data-reveal>
             {/* Invisible spacer to reserve height and prevent layout shift */}
             <span aria-hidden="true" className={styles.spacer}>
-              {"I build software where\nmodels, data, and systems meet."}
+              {"I explore where intelligence\nmeets engineering."}
             </span>
             
             <div className={styles.typingWrapper}>
               <TextType
                 text={[
                   "Between models\nand systems.",
-                  "I build software where\nmodels, data, and systems meet.",
-                  "Grounded in\nquantitative engineering."
+                  "I explore where intelligence\nmeets engineering.",
+                  "From data and algorithms\nto reliable software."
                 ]}
                 typingSpeed={45}
                 deletingSpeed={25}

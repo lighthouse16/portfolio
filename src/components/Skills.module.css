@@ -1,7 +1,7 @@
 .section {
   position: relative;
-  padding: clamp(88px, 12vw, 150px) 0 clamp(110px, 14vw, 180px);
-  scroll-margin-top: calc(-1 * clamp(88px, 12vw, 150px) + 8px);
+  padding: clamp(80px, 10vw, 120px) 0 clamp(40px, 5vw, 64px);
+  scroll-margin-top: calc(-1 * clamp(80px, 10vw, 120px) + 8px);
   background: var(--paper);
 }
 
@@ -10,7 +10,7 @@
   grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
   gap: 48px;
   align-items: start;
-  margin-bottom: clamp(48px, 7vw, 88px);
+  margin-bottom: clamp(32px, 4vw, 48px);
 }
 
 .title {
@@ -26,7 +26,7 @@
 .stage {
   display: flex;
   flex-direction: column;
-  min-height: min(680px, 76vh);
+  min-height: 240px;
 }
 
 .tabRail {

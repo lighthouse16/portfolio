@@ -73,8 +73,6 @@ export default function DeepFloodCaseStudy() {
               <span className={styles.metaDot}>·</span>
               <span>SEAS 2025 team origin · Independently re-engineered</span>
               <span className={styles.metaDot}>·</span>
-              <span>Long Đại basin, Quảng Bình, Vietnam</span>
-              <span className={styles.metaDot}>·</span>
               <a href="https://deepflood.haidangtrih.me/" target="_blank" rel="noreferrer" className={styles.metaLink}>
                 ↗ live dashboard
               </a>
@@ -100,7 +98,7 @@ export default function DeepFloodCaseStudy() {
               </p>
             </blockquote>
             <p className="reveal">
-              The result is a same-day streamflow nowcasting prototype for the Long Đại basin in Quảng Bình, Vietnam.
+              The result is a same-day streamflow nowcasting prototype.
             </p>
 
             <h2 id="problem" className="reveal">
@@ -292,7 +290,7 @@ export default function DeepFloodCaseStudy() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Same-day Long Đại validation</td>
+                    <td>Same-day validation</td>
                     <td>Multi-day forecasting</td>
                   </tr>
                   <tr>
