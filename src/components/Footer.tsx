@@ -17,8 +17,8 @@ export const Footer = () => {
       <div className="container">
         <p className="eyebrow">06 / Contact</p>
         <a className={styles.cta} href="mailto:haidang.trih@gmail.com">
-          <span>Building with data, models, or complex systems?</span>
-          <strong>Let&apos;s solve a hard problem well.</strong>
+          <span>Interested in models, data, or hard software problems?</span>
+          <strong>Let&apos;s connect and build well.</strong>
           <ArrowUpRight aria-hidden="true" />
         </a>
         <div className={styles.bottom}>

@@ -13,12 +13,13 @@ const entries = [
     id: "polyu",
     period: "2025 — 2029",
     color: "blue" as const,
-    role: "BSc (Hons) Computer Science | Minor in Applied Mathematics",
+    role: "BSc (Hons) Computer Science · Minor in Applied Mathematics",
     org: "The Hong Kong Polytechnic University",
-    detail: "Hong Kong",
+    detail: "Kowloon, Hong Kong · Expected May 2029",
     bullets: [
-      "Full-ride academic scholarship recipient",
-      "Building foundations in algorithms, databases, linear algebra, probability, and statistics",
+      "Cumulative GPA: 3.5 / 4.3",
+      "Recipient of a Full-Ride Academic Entry Scholarship",
+      "Selected coursework: Data Structures, Object-Oriented Programming, Principles of Data Science, AI & Data Analytics, Discrete Mathematics, Linear Algebra",
     ],
     icon: "🎓",
     stat: "3.5",
@@ -28,32 +29,33 @@ const entries = [
     id: "symposium",
     period: "Nov 2025",
     color: "red" as const,
-    role: "Research Proposal Presenter",
+    role: "Research Proposal Presenter · Data-Driven Educational Technology",
     org: "PolyU Symposium on Innovations for a Sustainable Future",
     detail: "Hong Kong",
     bullets: [
-      "Proposed a data-driven EdTech solution to improve STEM knowledge retention",
-      "Demonstrated system architecture, spaced-repetition logic, and outcome metrics to academic panels",
+      "Presented a data-driven educational technology proposal centered on adaptive spaced repetition and measurable STEM knowledge retention.",
+      "Proposed a system that connects spaced-repetition scheduling with a quantitative learning-analytics framework.",
+      "Presented the system design, evaluation methodology, and measurable retention criteria to symposium judges and academic attendees.",
     ],
     icon: "🎤",
-    stat: "200+",
-    statLabel: "Audience",
+    stat: "60+",
+    statLabel: "Presenters",
   },
   {
     id: "seas",
     period: "Jul — Aug 2025",
     color: "green" as const,
-    role: "Participant — AI & Applications",
+    role: "Participant · AI & Applications",
     org: "Summer in Engineering and Applied Sciences (SEAS)",
-    detail: "Quảng Bình, Vietnam | seas-cvn.com",
+    detail: "Quảng Bình, Vietnam",
     bullets: [
-      "Completed an intensive AI and machine learning curriculum adapted from MIT coursework",
-      "Worked in a team on the original flood-modeling prototype for Central Vietnam",
-      "Later rebuilt DeepFlood independently around leakage-aware validation, local feature engineering, and reproducible evaluation",
+      "Completed an intensive AI/ML summer school adapted from MIT Computer Science coursework, with mentorship involving researchers from MIT, Harvard, CERN, UIUC, and VinAI.",
+      "Collaborated on the original team flood-modeling prototype for Central Vietnam through exploratory data analysis, feature engineering, and early modeling.",
+      "After the summer school, independently re-engineered the prototype into the current DeepFlood system with basin-specific modeling, leakage-aware validation, and peak-sensitive training.",
     ],
     icon: "🔬",
     stat: "43",
-    statLabel: "of 400",
+    statLabel: "of 400+",
   },
 ];
 
@@ -172,7 +174,7 @@ export const Experience = () => {
       <div className={`container ${styles.header}`}>
         <p className="eyebrow">03 / Experience</p>
         <h2 id="exp-title" className={styles.title}>
-          <span style={{ color: "var(--red)" }}>Where</span>{" "}I&apos;ve been.
+          Learning, presenting, <span>and building beyond coursework.</span>
         </h2>
       </div>
 

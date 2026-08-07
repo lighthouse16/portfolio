@@ -35,7 +35,7 @@ const honors = [
   },
   {
     year: "2025–2029",
-    title: "PolyU Full-Ride Academic Scholarship",
+    title: "PolyU Full-Ride Academic Entry Scholarship",
     rank: "Recipient",
     color: "green" as const,
   },
@@ -132,7 +132,7 @@ export const Honors = () => {
         <div className="container">
           <p className="eyebrow">05 / Honors</p>
           <h2 id="honors-title" className={styles.title}>
-            Recognition <span>&amp; awards.</span>
+            Recognition <span>in computing &amp; mathematics.</span>
           </h2>
         </div>
       </div>

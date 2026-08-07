@@ -38,40 +38,54 @@ const groups: SkillGroup[] = [
     accent: "var(--blue)",
     icon: Braces,
     items: [
-      { name: "Python", note: "ML & backend", devicon: "python" },
-      { name: "TypeScript", note: "Web applications", devicon: "typescript" },
-      { name: "SQL", note: "Queries & schema", Lucide: Database },
-      { name: "C++", note: "Algorithms", devicon: "cplusplus" },
-      { name: "C", note: "Coursework", src: "/c-logo.svg" },
-      { name: "Java", note: "Coursework", devicon: "java" },
+      { name: "Python", note: "ML, data, backend & automation", devicon: "python" },
+      { name: "TypeScript", note: "Full-stack & typed dev", devicon: "typescript" },
+      { name: "SQL", note: "Queries & schema design", Lucide: Database },
+      { name: "C++", note: "Algorithms & data structures", devicon: "cplusplus" },
+      { name: "Java", note: "OOP & coursework", devicon: "java" },
+      { name: "C", note: "Foundations & coursework", src: "/c-logo.svg" },
     ],
   },
   {
-    id: "applied-ai",
-    label: "Applied AI & ML",
+    id: "ml-quant",
+    label: "ML & Quantitative",
     accent: "var(--red)",
     icon: BrainCircuit,
     items: [
-      { name: "Time-Series Modeling", note: "Sequential data", Lucide: Activity },
-      { name: "Feature Engineering", note: "Domain signals", Lucide: Wrench },
-      { name: "Chronological Validation", note: "Leakage control", Lucide: ShieldCheck },
-      { name: "TensorFlow", note: "Neural networks", devicon: "tensorflow" },
+      { name: "Time-Series Modeling", note: "Sequential data & validation", Lucide: Activity },
+      { name: "Feature Engineering", note: "Domain & leakage-aware signals", Lucide: Wrench },
+      { name: "Model Evaluation", note: "Holdouts, baselines & metrics", Lucide: ShieldCheck },
+      { name: "TensorFlow / Keras", note: "Neural-network training", devicon: "tensorflow" },
+      { name: "PyTorch", note: "ML experimentation", devicon: "pytorch" },
       { name: "Scikit-learn", note: "Preprocessing & metrics", devicon: "scikitlearn" },
+      { name: "Pandas / NumPy", note: "Numerical & tabular data", Lucide: ChartNoAxesCombined },
     ],
   },
   {
-    id: "data-systems",
-    label: "Data & Systems",
+    id: "data-ai",
+    label: "Data & AI Systems",
     accent: "var(--green)",
     icon: Database,
     items: [
-      { name: "PostgreSQL", note: "Relational data", devicon: "postgresql" },
-      { name: "Vector Retrieval", note: "pgvector", Lucide: Search },
-      { name: "LLM Extraction", note: "Structured records", Lucide: FileJson },
-      { name: "Deduplication", note: "Data quality", Lucide: ListOrdered },
-      { name: "FastAPI", note: "Python APIs", devicon: "fastapi" },
-      { name: "Next.js", note: "Web applications", devicon: "nextjs/nextjs-plain" },
-      { name: "Linux / Git", note: "Development workflow", devicon: "linux" },
+      { name: "PostgreSQL", note: "Relational data & transactions", devicon: "postgresql" },
+      { name: "pgvector", note: "Embedding storage & retrieval", Lucide: Search },
+      { name: "LLM Integration", note: "Structured extraction & outputs", Lucide: FileJson },
+      { name: "Information Retrieval", note: "Semantic search & filters", Lucide: Search },
+      { name: "Data Quality", note: "Deduplication & normalization", Lucide: ListOrdered },
+      { name: "FastAPI", note: "Python APIs & processing", devicon: "fastapi" },
+      { name: "Asynchronous Processing", note: "Worker pipelines & recovery", Lucide: Activity },
+    ],
+  },
+  {
+    id: "software-eng",
+    label: "Software Engineering",
+    accent: "var(--blue)",
+    icon: Wrench,
+    items: [
+      { name: "Next.js / React", note: "Web apps & workflows", devicon: "nextjs/nextjs-plain" },
+      { name: "Git / GitHub Actions", note: "VCS, CI/CD & automation", devicon: "github" },
+      { name: "Docker", note: "Containerized environments", devicon: "docker" },
+      { name: "Linux / Unix", note: "Dev & deployment workflows", devicon: "linux" },
     ],
   },
   {
@@ -206,7 +220,7 @@ export const Skills = () => {
       <div className={`container ${styles.header}`}>
         <p className="eyebrow">02 / Skills</p>
         <h2 id="skills-title" className={styles.title}>
-          Built for AI. <span>Grounded in systems.</span>
+          Built for models. <span>Grounded in systems.</span>
         </h2>
       </div>
 

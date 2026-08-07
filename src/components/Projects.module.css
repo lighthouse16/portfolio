@@ -16,12 +16,21 @@
   margin-bottom: 2rem;
 }
 
-.heading h2 {
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
   font-size: clamp(3.2rem, 7vw, 7rem);
   font-weight: 550;
-
   line-height: 0.9;
   color: var(--ink);
+}
+
+.lineLeft {
+  text-align: left;
+}
+
+.lineRight {
+  text-align: right;
 }
 
 .headingAccent {
