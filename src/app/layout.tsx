@@ -6,11 +6,11 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Hai Dang Trinh | Computer Science, Applied AI & Data Systems",
+  title: "Hai Dang Trinh | CS @ PolyU",
   description:
     "Computer Science student at PolyU building and evaluating applied AI systems, machine learning pipelines, and data-driven software.",
   openGraph: {
-    title: "Hai Dang Trinh | Computer Science, Applied AI & Data Systems",
+    title: "Hai Dang Trinh | CS @ PolyU",
     description:
       "Applied AI, machine learning evaluation, and data-driven software.",
     type: "website",
