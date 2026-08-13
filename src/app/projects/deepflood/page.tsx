@@ -159,7 +159,7 @@ export default function DeepFloodCaseStudy() {
               <a href="#re-engineering" className={styles.headingAnchor}>link</a>Re-engineering
             </h2>
             <p className="reveal">
-              The independent work focused on removing future-data leakage, rebuilding feature generation, enforcing chronological validation, adding peak-sensitive weighting, and creating reproducible evaluation artifacts.
+              The independent work focused on controlling future data leakage risk, rebuilding feature generation, enforcing chronological validation, adding peak-sensitive weighting, and creating reproducible evaluation artifacts.
             </p>
             <p className="reveal">
               To penalize large flow errors during training, samples are weighted by flow magnitude:
@@ -171,7 +171,7 @@ export default function DeepFloodCaseStudy() {
               </div>
             </div>
             <p className="reveal">
-              Here <Math math="y_i" /> is the training target for sample <Math math="i" /> and <Math math="y_{\max,\mathrm{train}}" /> is the maximum streamflow in the training period. High-flow observations become progressively more influential during optimization — improving sensitivity to large flow changes but potentially increasing average absolute error on ordinary observations.
+              Here <Math math="y_i" /> is the training target for sample <Math math="i" /> and <Math math="y_{\max,\mathrm{train}}" /> is the maximum streamflow in the training period. High-flow observations become progressively more influential during optimization — placing greater emphasis on large flow errors during optimization, but potentially increasing average absolute error on ordinary observations. The current experiment does not isolate its individual contribution.
             </p>
 
             <h2 id="validation" className="reveal">
