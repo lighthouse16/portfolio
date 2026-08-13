@@ -17,7 +17,6 @@ const entries = [
     org: "The Hong Kong Polytechnic University",
     detail: "Hong Kong · Expected May 2029",
     bullets: [
-      "Full-Ride Academic Entry Scholarship recipient.",
       "Selected coursework in Data Structures, OOP, Data Science, AI & Data Analytics, Discrete Mathematics, and Linear Algebra.",
     ],
     icon: "🎓",

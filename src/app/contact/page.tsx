@@ -58,7 +58,7 @@ export default function Contact() {
       <div className={`container ${styles.gridContainer}`}>
         <header className={styles.header}>
           <p className="eyebrow reveal">Contact</p>
-          <h1 className={`${styles.title} reveal`}>Let&apos;s discuss the problem first.</h1>
+          <h1 className={`${styles.title} reveal`}>Let&apos;s discuss the problem.</h1>
         </header>
 
         <div className={styles.channels} aria-label="Contact channels">
