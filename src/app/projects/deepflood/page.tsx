@@ -239,24 +239,24 @@ export default function DeepFloodCaseStudy() {
                   <tr>
                     <td><strong>MAE</strong></td>
                     <td className={styles.numCol}>130.8 m³/s</td>
-                    <td className={styles.numCol}>128.1 m³/s</td>
+                    <td className={styles.numCol}>126.9 m³/s</td>
                   </tr>
                   <tr>
                     <td><strong>RMSE</strong></td>
                     <td className={styles.numCol}>148.1 m³/s</td>
-                    <td className={styles.numCol}>314.3 m³/s</td>
+                    <td className={styles.numCol}>312.8 m³/s</td>
                   </tr>
                   <tr>
                     <td><strong>NSE</strong></td>
                     <td className={styles.numCol}>0.726</td>
-                    <td className={styles.numCol}>−0.223</td>
+                    <td className={styles.numCol}>−0.222</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <p className="reveal">
-              DeepFlood reduces RMSE by approximately 52.9% relative to persistence. DeepFlood MAE is approximately 2.1% higher than persistence.
+              DeepFlood reduces RMSE by approximately 52.6% relative to persistence. DeepFlood MAE is approximately 3.0% higher than persistence.
             </p>
 
             <p className="reveal">
@@ -301,7 +301,7 @@ export default function DeepFloodCaseStudy() {
               DeepFlood does not outperform persistence on every metric. Persistence achieves slightly lower MAE because streamflow often changes gradually between consecutive days — the persistence assumption is competitive under normal conditions.
             </p>
             <p className="reveal">
-              DeepFlood substantially improves RMSE and NSE. This reflects the intended trade-off: peak-sensitive training places more weight on large flow errors during optimization, which improves sensitivity to large flow changes at the cost of a small increase in average absolute error on ordinary observations. The metrics disagree because they measure different things — MAE treats all errors equally, while RMSE penalizes large deviations more heavily.
+              DeepFlood substantially improves RMSE and NSE. This reflects the intended trade-off: peak-sensitive training places more weight on large flow errors during optimization, which emphasizes high flow deviations at the cost of a small increase in average absolute error on ordinary observations. The metrics disagree because they measure different things — MAE treats all errors equally, while RMSE penalizes large deviations more heavily.
             </p>
 
             <h2 id="limitations" className="reveal">
