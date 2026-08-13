@@ -87,10 +87,7 @@ export default function DeepFloodCaseStudy() {
               <a href="#origin" className={styles.headingAnchor}>link</a>Origin
             </h2>
             <p className="reveal">
-              DeepFlood started during the Summer in Engineering and Applied Sciences (SEAS) 2025 program as a team exploration of flood modeling.
-            </p>
-            <p className="reveal">
-              After the program, the system was independently rebuilt around a more rigorous research question:
+              DeepFlood started during the Summer in Engineering and Applied Sciences (SEAS) 2025 program as a team exploration of flood modeling. After the program, the system was independently rebuilt around a more rigorous research question:
             </p>
             <blockquote className={`${styles.pullQuote} reveal`}>
               <p>
@@ -98,7 +95,7 @@ export default function DeepFloodCaseStudy() {
               </p>
             </blockquote>
             <p className="reveal">
-              The result is a same-day streamflow nowcasting prototype.
+              The result is a same-day streamflow nowcasting prototype specific to the Long Đại basin, Quảng Bình, Vietnam. The SEAS team produced an initial model; the current system — including architecture, feature engineering, leakage controls, and evaluation dashboard — was independently re-engineered after the program.
             </p>
 
             <h2 id="problem" className="reveal">
@@ -108,15 +105,33 @@ export default function DeepFloodCaseStudy() {
               Extreme hydrological events create an imbalanced regression problem. Most observations represent normal flow conditions, while the most important events are rare peaks.
             </p>
             <p className="reveal">
-              Time-series experiments also require careful validation because random splits and unsafe preprocessing can introduce future information into historical evaluation.
+              Time-series experiments also require careful validation design because random splits and preprocessing that uses full-dataset statistics can introduce future information into historical evaluation — inflating apparent performance without reflecting real predictive skill.
             </p>
 
             <h2 id="data-method" className="reveal">
               <a href="#data-method" className={styles.headingAnchor}>link</a>Data &amp; Method
             </h2>
             <p className="reveal">
-              Each prediction uses the input sequence definition:
+              Each prediction uses a seven-day input window of hydrometeorological observations. The features derive from three stages of processing:
             </p>
+
+            <div className={`${styles.architectureStack} reveal`}>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Raw observations</div>
+                <div className={styles.layerItems}>Precipitation · Temperature · Solar radiation · Vapor pressure · Historical streamflow</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Engineered signals</div>
+                <div className={styles.layerItems}>Rolling rainfall windows · Seasonality indicators · Lagged streamflow · Temporal statistics</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Model input</div>
+                <div className={styles.layerItems}>39 features × 7-day window — all target-derived streamflow features use strictly lagged observations</div>
+              </div>
+            </div>
+
             <div className={`${styles.formulaBlock} reveal`}>
               <Math math="X_t \in \mathbb{R}^{7 \times 39}" block />
               <div className={styles.formulaSubtext}>
@@ -125,15 +140,17 @@ export default function DeepFloodCaseStudy() {
             </div>
 
             <p className="reveal">
-              The sequence is processed through a sequential deep learning architecture:
+              The sequence is processed through a sequential architecture:
             </p>
             <div className={`${styles.formulaBlock} reveal`}>
-              <Math math="X_t \rightarrow \mathrm{Conv1D} \rightarrow \mathrm{BiLSTM} \rightarrow \mathrm{BiLSTM} \rightarrow \mathrm{Temporal\ Attention} \rightarrow \hat{Q}_t" block />
+              <Math math="X_t \rightarrow \mathrm{Conv1D}_{64} \rightarrow \mathrm{BiLSTM}_{128} \rightarrow \mathrm{BiLSTM}_{64} \rightarrow \mathrm{Temporal\ Attention} \rightarrow \hat{Q}_t" block />
             </div>
 
-            <p className="reveal">
-              The pipeline relies on strictly lagged streamflow features, train-only scaling, temporal sequence modeling, and peak-aware regression.
-            </p>
+            <blockquote className={`${styles.pullQuote} reveal`}>
+              <p>
+                The bidirectional layers operate only within the observed input window. They do not access observations after prediction time <Math math="t" />, and target-derived streamflow features use historical lags only.
+              </p>
+            </blockquote>
 
             <h2 id="re-engineering" className="reveal">
               <a href="#re-engineering" className={styles.headingAnchor}>link</a>Re-engineering
@@ -142,7 +159,7 @@ export default function DeepFloodCaseStudy() {
               The independent work focused on removing future-data leakage, rebuilding feature generation, enforcing chronological validation, adding peak-sensitive weighting, and creating reproducible evaluation artifacts.
             </p>
             <p className="reveal">
-              To penalize large flood errors during model training, samples are weighted dynamically based on flow magnitude:
+              To penalize large flow errors during training, samples are weighted by flow magnitude:
             </p>
             <div className={`${styles.formulaBlock} reveal`}>
               <Math math="w_i = 1 + 30\left(\frac{y_i}{y_{\max,\mathrm{train}}}\right)" block />
@@ -151,14 +168,14 @@ export default function DeepFloodCaseStudy() {
               </div>
             </div>
             <p className="reveal">
-              The purpose of sample weighting is to make large streamflow prediction errors up to 31× more costly during training optimization.
+              Here <Math math="y_i" /> is the training target for sample <Math math="i" /> and <Math math="y_{\max,\mathrm{train}}" /> is the maximum streamflow in the training period. High-flow observations become progressively more influential during optimization — improving sensitivity to large flow changes but potentially increasing average absolute error on ordinary observations.
             </p>
 
             <h2 id="validation" className="reveal">
               <a href="#validation" className={styles.headingAnchor}>link</a>Validation
             </h2>
             <p className="reveal">
-              To prevent temporal leakage, evaluation strictly enforces a chronological split:
+              To prevent temporal leakage, evaluation enforces a strict chronological split:
             </p>
 
             <div className={`${styles.chronoSplit} reveal`}>
@@ -171,7 +188,7 @@ export default function DeepFloodCaseStudy() {
                 <div className={styles.chronoVal}>Validation period — 30%</div>
               </div>
               <div className={styles.chronoCaption}>
-                Validation period contains 107 chronological observations.
+                Validation period contains 107 chronological observations. The same period was used for checkpoint selection.
               </div>
             </div>
 
@@ -180,21 +197,21 @@ export default function DeepFloodCaseStudy() {
                 <thead>
                   <tr>
                     <th>Safeguard</th>
-                    <th>Prevents</th>
+                    <th>What it prevents</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td><strong>Chronological split</strong></td>
-                    <td>Future observations entering training set</td>
+                    <td>Future observations being randomly mixed into the training set</td>
                   </tr>
                   <tr>
                     <td><strong>Train-only scaling</strong></td>
                     <td>Future distribution information entering preprocessing scalers</td>
                   </tr>
                   <tr>
-                    <td><strong>Strictly lagged flow</strong></td>
-                    <td>Day-T target leakage into input features</td>
+                    <td><strong>Strictly lagged streamflow</strong></td>
+                    <td>Day-T target information leaking into day-T model input features</td>
                   </tr>
                 </tbody>
               </table>
@@ -212,7 +229,7 @@ export default function DeepFloodCaseStudy() {
                   <tr>
                     <th>Metric</th>
                     <th className={styles.numCol}>DeepFlood</th>
-                    <th className={styles.numCol}>Persistence Baseline</th>
+                    <th className={styles.numCol}>Persistence baseline</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -229,20 +246,24 @@ export default function DeepFloodCaseStudy() {
                   <tr>
                     <td><strong>NSE</strong></td>
                     <td className={styles.numCol}>0.726</td>
-                    <td className={styles.numCol}>-0.223</td>
+                    <td className={styles.numCol}>−0.223</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <p className="reveal">
-              Validation peak estimation performance:
+              DeepFlood reduces RMSE by approximately 52.9% relative to persistence. DeepFlood MAE is approximately 2.1% higher than persistence.
+            </p>
+
+            <p className="reveal">
+              Diagnostic on the largest event in the validation period:
             </p>
             <div className={`${styles.editorialTableWrapper} reveal`}>
               <table className={styles.editorialTable}>
                 <thead>
                   <tr>
-                    <th>Validation Peak Metric</th>
+                    <th>Validation peak diagnostic</th>
                     <th className={styles.numCol}>Value</th>
                   </tr>
                 </thead>
@@ -266,15 +287,18 @@ export default function DeepFloodCaseStudy() {
                 </tbody>
               </table>
             </div>
+            <p className="reveal" style={{ fontSize: "0.88rem" }}>
+              This diagnostic covers a single event and is not evidence of general peak forecasting reliability.
+            </p>
 
             <h2 id="interpretation" className="reveal">
               <a href="#interpretation" className={styles.headingAnchor}>link</a>Interpretation
             </h2>
             <p className="reveal">
-              DeepFlood does not outperform persistence on every metric. Persistence achieves slightly lower MAE, while DeepFlood substantially improves RMSE and NSE.
+              DeepFlood does not outperform persistence on every metric. Persistence achieves slightly lower MAE because streamflow often changes gradually between consecutive days — the persistence assumption is competitive under normal conditions.
             </p>
             <p className="reveal">
-              This reflects the intended trade-off: improve extreme-event sensitivity while accepting a small increase in average absolute error.
+              DeepFlood substantially improves RMSE and NSE. This reflects the intended trade-off: peak-sensitive training places more weight on large flow errors during optimization, which improves sensitivity to large flow changes at the cost of a small increase in average absolute error on ordinary observations. The metrics disagree because they measure different things — MAE treats all errors equally, while RMSE penalizes large deviations more heavily.
             </p>
 
             <h2 id="limitations" className="reveal">
@@ -290,11 +314,11 @@ export default function DeepFloodCaseStudy() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Same-day validation</td>
-                    <td>Multi-day forecasting</td>
+                    <td>Same-day streamflow nowcasting for Long Đại</td>
+                    <td>Multi-day forecasting skill</td>
                   </tr>
                   <tr>
-                    <td>Chronological holdout evaluation</td>
+                    <td>Chronological validation period performance</td>
                     <td>Untouched independent test performance</td>
                   </tr>
                   <tr>
@@ -302,8 +326,12 @@ export default function DeepFloodCaseStudy() {
                     <td>Cross-basin generalization</td>
                   </tr>
                   <tr>
-                    <td>Static evaluation artifact</td>
+                    <td>Precomputed evaluation dashboard</td>
                     <td>Operational warning deployment</td>
+                  </tr>
+                  <tr>
+                    <td>Peak-sensitive behavior during validation period</td>
+                    <td>Reliability across all extreme events</td>
                   </tr>
                 </tbody>
               </table>
@@ -313,10 +341,10 @@ export default function DeepFloodCaseStudy() {
               <a href="#artifact" className={styles.headingAnchor}>link</a>Artifact
             </h2>
             <p className="reveal">
-              Interactive evaluation dashboard: <a href="https://deepflood.haidangtrih.me/" target="_blank" rel="noreferrer" className={styles.metaLink}><code>https://deepflood.haidangtrih.me/</code></a>
+              Evaluation dashboard: <a href="https://deepflood.haidangtrih.me/" target="_blank" rel="noreferrer" className={styles.metaLink}><code>https://deepflood.haidangtrih.me/</code></a>
             </p>
             <p className="reveal">
-              The dashboard visualizes pre-computed evaluation results and is not an operational inference service.
+              Predictions shown are precomputed evaluation outputs. The dashboard visualizes hindcast results and is not an operational inference service.
             </p>
           </article>
         </div>

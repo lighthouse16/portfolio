@@ -70,16 +70,19 @@ export default function AppLynkCaseStudy() {
               For students, finding a good opportunity is often less about whether it exists and more about whether they happen to see it.
             </p>
             <p className="reveal">
-              Scholarships, competitions, internships, exchange programs, workshops, and volunteering opportunities are distributed across university websites, social posts, organization pages, PDFs, and application portals.
+              Scholarships, competitions, internships, exchange programs, workshops, and volunteering opportunities are distributed across university websites, social posts, organization pages, PDFs, and application portals. Source formats are inconsistent. Deadlines and eligibility may be buried in prose. The same announcement often appears in several places with slightly different text.
             </p>
             <p className="reveal">
-              AppLynk transforms fragmented opportunity information into a structured discovery system:
+              AppLynk exists to transform that fragmented information into structured, searchable records.
             </p>
 
             <h2 id="system" className="reveal"><a href="#system" className={styles.headingAnchor}>link</a>System</h2>
             <p className="reveal">
-              The system separates uncertain source material from published product data.
+              The core design principle separates raw source material from published product data. Crawler output enters the system as evidence to be evaluated, not as content ready to serve.
             </p>
+            <blockquote className={`${styles.pullQuote} reveal`}>
+              <p>Raw crawler output is evidence. It is not automatically product content.</p>
+            </blockquote>
 
             <div className={`${styles.architectureStack} reveal`}>
               <div className={styles.architectureLayer}>
@@ -88,13 +91,23 @@ export default function AppLynkCaseStudy() {
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.architectureLayer}>
-                <div className={styles.layerHeader}>Processing</div>
-                <div className={styles.layerItems}>Filter · Deduplicate · Extract · Normalize · Enrich</div>
+                <div className={styles.layerHeader}>Raw ingestion</div>
+                <div className={styles.layerItems}>Raw records · Source metadata · Timestamps</div>
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.architectureLayer}>
-                <div className={styles.layerHeader}>Data</div>
-                <div className={styles.layerItems}>Raw posts · Published opportunities · Embeddings · Profiles</div>
+                <div className={styles.layerHeader}>Processing</div>
+                <div className={styles.layerItems}>Relevance filtering · Duplicate control · Structured extraction · Normalization</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Publication boundary</div>
+                <div className={styles.layerItems}>Validated structured records</div>
+              </div>
+              <div className={styles.layerArrow}>↓</div>
+              <div className={styles.architectureLayer}>
+                <div className={styles.layerHeader}>Published data</div>
+                <div className={styles.layerItems}>Opportunities · Embeddings · Profiles</div>
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.architectureLayer}>
@@ -102,10 +115,6 @@ export default function AppLynkCaseStudy() {
                 <div className={styles.layerItems}>Discovery · Search · Ranking · Collections · Bookmarks</div>
               </div>
             </div>
-
-            <p className="reveal">
-              Raw crawler output is treated as evidence, not automatically as product content.
-            </p>
 
             <h2 id="pipeline" className="reveal"><a href="#pipeline" className={styles.headingAnchor}>link</a>Pipeline</h2>
             <div className={`${styles.editorialDiagram} reveal`}>
@@ -131,39 +140,43 @@ export default function AppLynkCaseStudy() {
             </div>
 
             <p className="reveal">
-              <strong>Cheap deterministic filtering before inference:</strong> TF-IDF relevance filtering screens out off-domain documents, while MinHash LSH identifies near-duplicate raw content before any LLM calls.
+              <strong>Deterministic filtering before inference:</strong> TF-IDF relevance screening rejects off-domain documents, and MinHash LSH identifies near-duplicate raw records before any LLM processing. The goal is to avoid spending probabilistic model calls on content that deterministic checks can reject first.
             </p>
             <p className="reveal">
-              <strong>Schema-constrained extraction:</strong> LLM workflows extract bounded factual fields (deadlines, eligibility, provider details) instead of generating uncontrolled prose.
+              <strong>Structured interpretation:</strong> LLM workflows recover bounded structured fields from heterogeneous source text — deadlines, eligibility, provider details — using schema-constrained output. The model interprets source information; it does not become the source of truth. Structured output is normalized before publication.
             </p>
             <p className="reveal">
-              <strong>Semantic + structured retrieval:</strong> 768-dimensional embeddings stored with PostgreSQL + <code>pgvector</code> complement structured SQL filters to balance intent matching with strict constraints.
+              <strong>Hybrid retrieval:</strong> 768-dimensional embeddings stored with PostgreSQL and <code>pgvector</code> support semantic retrieval. Semantic similarity handles conceptual meaning; SQL structured fields enforce explicit constraints such as deadline, category, and eligibility. Both paths are complementary, not interchangeable.
             </p>
 
             <h2 id="product" className="reveal"><a href="#product" className={styles.headingAnchor}>link</a>Product</h2>
             <p className="reveal">
-              AppLynk delivers a live discovery experience tailored for Vietnamese students and young professionals, featuring bilingual (Vietnamese / English) interfaces and rapid autocomplete across 3,185 verified education institutions.
+              AppLynk delivers a live discovery experience for Vietnamese students and young professionals, with bilingual Vietnamese and English interfaces.
             </p>
             <div className={`${styles.editorialTableWrapper} reveal`}>
               <table className={styles.editorialTable}>
                 <thead>
                   <tr>
                     <th>Capability</th>
-                    <th>Implementation</th>
+                    <th>System underneath</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Bilingual Discovery</strong></td>
-                    <td>Vietnamese / English catalog navigation and search interface</td>
+                    <td><strong>Opportunity discovery</strong></td>
+                    <td>Structured published records surfaced through ranking logic</td>
                   </tr>
                   <tr>
-                    <td><strong>School Directory API</strong></td>
-                    <td>Server-side autocomplete suggestions across 3,185 Vietnamese high schools and universities</td>
+                    <td><strong>Natural language search</strong></td>
+                    <td>Vector retrieval (768-d pgvector embeddings) combined with structured SQL filters</td>
                   </tr>
                   <tr>
-                    <td><strong>Hybrid Retrieval</strong></td>
-                    <td>Combines strict SQL metadata filtering with vector similarity (768-d pgvector embeddings)</td>
+                    <td><strong>Personalization</strong></td>
+                    <td>Profile signals and ranking adjustments based on user context</td>
+                  </tr>
+                  <tr>
+                    <td><strong>School directory</strong></td>
+                    <td>Server-side autocomplete across 3,185 Vietnamese high schools and universities</td>
                   </tr>
                 </tbody>
               </table>
@@ -171,7 +184,7 @@ export default function AppLynkCaseStudy() {
 
             <h2 id="reliability" className="reveal"><a href="#reliability" className={styles.headingAnchor}>link</a>Reliability</h2>
             <p className="reveal">
-              Seven asynchronous workers coordinate ingestion without external queue dependencies:
+              Seven asynchronous workers coordinate ingestion without external queue dependencies. Worker roles include: <strong>scrape</strong>, <strong>extract</strong>, <strong>publish</strong>, <strong>translate</strong>, <strong>classify</strong>, <strong>index</strong>, and <strong>reaper</strong>.
             </p>
 
             <div className={`${styles.reliabilityDiagram} reveal`}>
@@ -181,8 +194,8 @@ export default function AppLynkCaseStudy() {
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.reliabilityNode}>
-                PostgreSQL task queue
-                <div className={styles.reliabilitySubNode}>Atomic state transitions &amp; transactional ownership</div>
+                PostgreSQL task coordination
+                <div className={styles.reliabilitySubNode}>Atomic state transitions · transactional ownership · worker leases · heartbeats</div>
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.reliabilityNode}>Scrape → Extract → Publish</div>
@@ -192,7 +205,7 @@ export default function AppLynkCaseStudy() {
             </div>
 
             <p className="reveal">
-              Worker leases, heartbeats, and stale-task recovery prevent abandoned tasks and duplicate processing across all seven background execution nodes.
+              <strong>Failure recovery:</strong> A worker can fail after claiming a task. The task lease eventually becomes stale. The recovery process — handled by the Reaper worker — releases the abandoned ownership so another worker can safely claim and process the task. This prevents permanently stuck tasks without requiring external coordination infrastructure.
             </p>
 
             <h2 id="decisions" className="reveal"><a href="#decisions" className={styles.headingAnchor}>link</a>Decisions</h2>
@@ -202,29 +215,29 @@ export default function AppLynkCaseStudy() {
                   <tr>
                     <th>Decision</th>
                     <th>Why</th>
-                    <th>Cost / Trade-off</th>
+                    <th>Trade-off</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td><strong>Filter before inference</strong></td>
-                    <td>Reduce unnecessary model calls</td>
-                    <td>Additional pipeline complexity</td>
+                    <td>Avoid sending obvious noise and near-duplicate content through model processing — deterministic checks are cheaper and sufficient for a first pass</td>
+                    <td>Adds a preprocessing stage; mis-calibrated thresholds could incorrectly reject valid content</td>
                   </tr>
                   <tr>
-                    <td><strong>PostgreSQL-backed queue</strong></td>
-                    <td>Transactional ownership control</td>
-                    <td>Less suitable than dedicated brokers at very large scale</td>
+                    <td><strong>PostgreSQL-backed task coordination</strong></td>
+                    <td>Task state and transactional ownership stay close to application data without introducing another stateful infrastructure component</td>
+                    <td>A dedicated message broker may become more appropriate at materially larger scale or throughput</td>
                   </tr>
                   <tr>
                     <td><strong>Separate raw and published data</strong></td>
-                    <td>Preserve provenance</td>
-                    <td>More explicit lifecycle management</td>
+                    <td>Preserve provenance and keep unverified crawler output away from users; makes the publication decision an explicit step</td>
+                    <td>Requires managing a two-stage data lifecycle rather than publishing records directly on ingest</td>
                   </tr>
                   <tr>
                     <td><strong>Semantic + structured retrieval</strong></td>
-                    <td>Combine meaning and constraints</td>
-                    <td>Two retrieval approaches</td>
+                    <td>Semantic similarity handles conceptual meaning and intent; structured fields enforce explicit constraints that vector distance cannot reliably express</td>
+                    <td>Requires maintaining two complementary retrieval paths with separate indexing concerns</td>
                   </tr>
                 </tbody>
               </table>
@@ -232,7 +245,10 @@ export default function AppLynkCaseStudy() {
 
             <h2 id="ownership" className="reveal"><a href="#ownership" className={styles.headingAnchor}>link</a>Ownership</h2>
             <p className="reveal">
-              Independent end-to-end build covering frontend application, backend services, ingestion pipeline, LLM extraction workflow, database design, vector retrieval, and deployment automation.
+              Independent end-to-end build covering product interface, full-stack application, ingestion architecture, structured extraction, database design, semantic retrieval, worker coordination, and deployment automation.
+            </p>
+            <p className="reveal">
+              The project is fundamentally about deciding where uncertainty belongs in a system — and building the surrounding infrastructure to make that boundary dependable.
             </p>
 
             <h2 id="status" className="reveal"><a href="#status" className={styles.headingAnchor}>link</a>Status</h2>
