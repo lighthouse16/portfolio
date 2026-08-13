@@ -112,13 +112,16 @@ export default function DeepFloodCaseStudy() {
               <a href="#data-method" className={styles.headingAnchor}>link</a>Data &amp; Method
             </h2>
             <p className="reveal">
-              Each prediction uses a seven-day input window of hydrometeorological observations. The features derive from three stages of processing:
+              Each prediction uses a seven-day input window of hydrometeorological observations. The model estimates streamflow on day <Math math="t" /> using meteorological observations available through day <Math math="t" /> and streamflow observations available before day <Math math="t" />.
+            </p>
+            <p className="reveal">
+              The features derive from three stages of processing:
             </p>
 
             <div className={`${styles.architectureStack} reveal`}>
               <div className={styles.architectureLayer}>
                 <div className={styles.layerHeader}>Raw observations</div>
-                <div className={styles.layerItems}>Precipitation · Temperature · Solar radiation · Vapor pressure · Historical streamflow</div>
+                <div className={styles.layerItems}>Precipitation (prcp) · Max/min temperature (tmax, tmin) · Solar radiation (srad) · Vapor pressure (vp) · Day length (dayl) · Historical streamflow</div>
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.architectureLayer}>
@@ -288,7 +291,7 @@ export default function DeepFloodCaseStudy() {
               </table>
             </div>
             <p className="reveal" style={{ fontSize: "0.88rem" }}>
-              This diagnostic covers a single event and is not evidence of general peak forecasting reliability.
+              This diagnostic covers a single event and is not evidence of reliable peak performance across extreme events.
             </p>
 
             <h2 id="interpretation" className="reveal">
@@ -319,7 +322,7 @@ export default function DeepFloodCaseStudy() {
                   </tr>
                   <tr>
                     <td>Chronological validation period performance</td>
-                    <td>Untouched independent test performance</td>
+                    <td>Performance on an independent test set</td>
                   </tr>
                   <tr>
                     <td>Basin-specific results</td>
@@ -332,6 +335,10 @@ export default function DeepFloodCaseStudy() {
                   <tr>
                     <td>Peak-sensitive behavior during validation period</td>
                     <td>Reliability across all extreme events</td>
+                  </tr>
+                  <tr>
+                    <td>Comparison against a persistence baseline</td>
+                    <td>Superiority over simpler ML models or alternative architectures</td>
                   </tr>
                 </tbody>
               </table>

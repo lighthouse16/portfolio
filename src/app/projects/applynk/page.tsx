@@ -60,7 +60,7 @@ export default function AppLynkCaseStudy() {
               </a>
             </div>
             <div className={styles.metaRow} style={{ marginTop: "10px" }}>
-              <code>Python · FastAPI · Next.js 16 · PostgreSQL · pgvector · Docker · GitHub Actions</code>
+              <code>Python · FastAPI · Next.js · PostgreSQL · pgvector · Docker · GitHub Actions</code>
             </div>
           </header>
 
@@ -106,8 +106,8 @@ export default function AppLynkCaseStudy() {
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.architectureLayer}>
-                <div className={styles.layerHeader}>Published data</div>
-                <div className={styles.layerItems}>Opportunities · Embeddings · Profiles</div>
+                <div className={styles.layerHeader}>Application data</div>
+                <div className={styles.layerItems}>Published opportunities · Vector index · User state</div>
               </div>
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.architectureLayer}>
@@ -205,7 +205,7 @@ export default function AppLynkCaseStudy() {
             </div>
 
             <p className="reveal">
-              <strong>Failure recovery:</strong> A worker can fail after claiming a task. The task lease eventually becomes stale. The recovery process — handled by the Reaper worker — releases the abandoned ownership so another worker can safely claim and process the task. This prevents permanently stuck tasks without requiring external coordination infrastructure.
+              <strong>Failure recovery:</strong> If a worker fails after claiming a task, its lease eventually becomes stale. The Reaper releases the abandoned ownership so another worker can safely reclaim the task.
             </p>
 
             <h2 id="decisions" className="reveal"><a href="#decisions" className={styles.headingAnchor}>link</a>Decisions</h2>

@@ -51,8 +51,8 @@ const entries = [
       "Defined the evaluation methodology and measurable retention metrics, then defended system feasibility and technical design choices before a faculty research panel.",
     ],
     icon: "🎤",
-    stat: "RESEARCH",
-    statLabel: "PRESENTER",
+    stat: "",
+    statLabel: "",
   },
 ];
 
@@ -220,7 +220,8 @@ export const Experience = () => {
                     <p className={styles.org}>{e.role}</p>
                   </div>
 
-                  {/* stat badge */}
+                  {/* stat badge — only rendered when stat is non-empty */}
+                  {e.stat && (
                   <div className={styles.statBadge} aria-hidden="true">
                     <span
                       className={styles.statValue}
@@ -230,6 +231,7 @@ export const Experience = () => {
                     </span>
                     <span className={styles.statLabel}>{e.statLabel}</span>
                   </div>
+                  )}
                 </div>
 
                   {/* expandable details */}

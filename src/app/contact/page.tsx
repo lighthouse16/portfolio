@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -11,16 +11,19 @@ gsap.registerPlugin(useGSAP);
 
 const channels = [
   {
+    id: "email",
     label: "Email",
-    value: "haidang.trih@gmail.com",
-    href: "mailto:haidang.trih@gmail.com",
+    value: "haidangtrih@gmail.com",
+    href: "#",
   },
   {
+    id: "linkedin",
     label: "LinkedIn",
     value: "linkedin.com/in/lighthouse16",
     href: "https://www.linkedin.com/in/lighthouse16/",
   },
   {
+    id: "github",
     label: "GitHub",
     value: "github.com/lighthouse16",
     href: "https://github.com/lighthouse16",
@@ -30,6 +33,14 @@ const channels = [
 export default function Contact() {
   const reduceMotion = useReducedMotion();
   const pageRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("haidangtrih@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   useGSAP(() => {
     if (reduceMotion) return;
@@ -48,26 +59,26 @@ export default function Contact() {
         <header className={styles.header}>
           <p className="eyebrow reveal">Contact</p>
           <h1 className={`${styles.title} reveal`}>Let&apos;s discuss the problem first.</h1>
-          <p className={`${styles.subtitle} reveal`}>
-            For internships, research, or project conversations, email is the most direct way to reach me.
-          </p>
-          <a className={`${styles.primary} reveal`} href="mailto:haidang.trih@gmail.com">
-            <Mail size={18} aria-hidden="true" />
-            Email Hai Dang
-          </a>
         </header>
 
         <div className={styles.channels} aria-label="Contact channels">
           {channels.map((channel) => (
             <a
-              key={channel.label}
+              key={channel.id}
               className={`${styles.channel} reveal`}
               href={channel.href}
+              onClick={(e) => {
+                if (channel.id === "email") {
+                  handleCopy(e);
+                }
+              }}
               target={channel.href.startsWith("http") ? "_blank" : undefined}
               rel={channel.href.startsWith("http") ? "noreferrer" : undefined}
             >
               <span className={styles.channelLabel}>{channel.label}</span>
-              <span className={styles.channelValue}>{channel.value}</span>
+              <span className={styles.channelValue}>
+                {channel.id === "email" && copied ? "Copied to clipboard!" : channel.value}
+              </span>
               <ArrowUpRight size={20} aria-hidden="true" />
             </a>
           ))}
