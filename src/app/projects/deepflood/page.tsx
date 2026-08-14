@@ -16,7 +16,7 @@ const sections = [
   { label: "Origin", id: "origin" },
   { label: "Problem", id: "problem" },
   { label: "Data & Method", id: "data-method" },
-  { label: "Re-engineering", id: "re-engineering" },
+  { label: "Refinement", id: "refinement" },
   { label: "Validation", id: "validation" },
   { label: "Results", id: "results" },
   { label: "Interpretation", id: "interpretation" },
@@ -71,7 +71,7 @@ export default function DeepFloodCaseStudy() {
             <div className={styles.metaRow}>
               <span>Time-Series ML · Hydrological Nowcasting · ML Engineering</span>
               <span className={styles.metaDot}>·</span>
-              <span>SEAS 2025 team origin · Independently re-engineered</span>
+              <span>SEAS 2025 team origin · Continued independently</span>
               <span className={styles.metaDot}>·</span>
               <a href="https://deepflood.haidangtrih.me/" target="_blank" rel="noreferrer" className={styles.metaLink}>
                 ↗ live dashboard
@@ -87,7 +87,7 @@ export default function DeepFloodCaseStudy() {
               <a href="#origin" className={styles.headingAnchor}>link</a>Origin
             </h2>
             <p className="reveal">
-              DeepFlood started during the Summer in Engineering and Applied Sciences (SEAS) 2025 program as a team exploration of flood modeling. After the program, the system was independently rebuilt around a more rigorous research question:
+              DeepFlood began as a team project at SEAS. After the program, I continued the project independently, refining the data pipeline, validation design, peak-sensitive training strategy, baseline comparison, and evaluation dashboard. This led to a more rigorous research question:
             </p>
             <blockquote className={`${styles.pullQuote} reveal`}>
               <p>
@@ -95,7 +95,7 @@ export default function DeepFloodCaseStudy() {
               </p>
             </blockquote>
             <p className="reveal">
-              The result is a same-day streamflow nowcasting prototype specific to the Long Đại basin, Quảng Bình, Vietnam. The SEAS team produced an initial model. After the program, I independently re-engineered the current architecture, feature engineering pipeline, leakage controls, and evaluation dashboard.
+              The result is a same-day streamflow nowcasting prototype specific to the Long Đại basin, Quảng Bình, Vietnam.
             </p>
 
             <h2 id="problem" className="reveal">
@@ -155,11 +155,11 @@ export default function DeepFloodCaseStudy() {
               </p>
             </blockquote>
 
-            <h2 id="re-engineering" className="reveal">
-              <a href="#re-engineering" className={styles.headingAnchor}>link</a>Re-engineering
+            <h2 id="refinement" className="reveal">
+              <a href="#refinement" className={styles.headingAnchor}>link</a>Refinement
             </h2>
             <p className="reveal">
-              The independent work focused on controlling future data leakage risk, rebuilding feature generation, enforcing chronological validation, adding peak-sensitive weighting, and creating reproducible evaluation artifacts.
+              The continued work focused on controlling future data leakage risk, refining feature generation, enforcing chronological validation, testing peak-sensitive weighting, and evaluating reproducible artifacts.
             </p>
             <p className="reveal">
               To penalize large flow errors during training, samples are weighted by flow magnitude:
