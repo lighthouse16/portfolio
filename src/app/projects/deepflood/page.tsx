@@ -95,7 +95,7 @@ export default function DeepFloodCaseStudy() {
               </p>
             </blockquote>
             <p className="reveal">
-              The result is a same-day streamflow nowcasting prototype specific to the Long Đại basin, Quảng Bình, Vietnam. The SEAS team produced an initial model; the current system — including architecture, feature engineering, leakage controls, and evaluation dashboard — was independently re-engineered after the program.
+              The result is a same-day streamflow nowcasting prototype specific to the Long Đại basin, Quảng Bình, Vietnam. The SEAS team produced an initial model. After the program, I independently re-engineered the current architecture, feature engineering pipeline, leakage controls, and evaluation dashboard.
             </p>
 
             <h2 id="problem" className="reveal">
@@ -105,7 +105,7 @@ export default function DeepFloodCaseStudy() {
               Extreme hydrological events create an imbalanced regression problem. Most observations represent normal flow conditions, while the most important events are rare peaks.
             </p>
             <p className="reveal">
-              Time-series experiments also require careful validation design because random splits and preprocessing that uses full-dataset statistics can introduce future information into historical evaluation — inflating apparent performance without reflecting real predictive skill.
+              Time-series experiments also require careful validation design because random splits and preprocessing that uses full-dataset statistics can introduce future information into historical evaluation. This can inflate apparent performance without reflecting real predictive skill.
             </p>
 
             <h2 id="data-method" className="reveal">
@@ -131,7 +131,7 @@ export default function DeepFloodCaseStudy() {
               <div className={styles.layerArrow}>↓</div>
               <div className={styles.architectureLayer}>
                 <div className={styles.layerHeader}>Model input</div>
-                <div className={styles.layerItems}>39 features × 7-day window — all target-derived streamflow features use strictly lagged observations</div>
+                <div className={styles.layerItems}>39 features × 7-day window · target-derived streamflow features use strictly lagged observations</div>
               </div>
             </div>
 
@@ -171,7 +171,7 @@ export default function DeepFloodCaseStudy() {
               </div>
             </div>
             <p className="reveal">
-              Here <Math math="y_i" /> is the training target for sample <Math math="i" /> and <Math math="y_{\max,\mathrm{train}}" /> is the maximum streamflow in the training period. High-flow observations become progressively more influential during optimization — placing greater emphasis on large flow errors during optimization, but potentially increasing average absolute error on ordinary observations. The current experiment does not isolate its individual contribution.
+              Here <Math math="y_i" /> is the training target for sample <Math math="i" /> and <Math math="y_{\max,\mathrm{train}}" /> is the maximum streamflow in the training period. High-flow observations become progressively more influential during optimization. This places greater emphasis on large flow errors, but it may also increase average absolute error on ordinary observations. The current experiment does not isolate its individual contribution.
             </p>
 
             <h2 id="validation" className="reveal">
@@ -187,8 +187,8 @@ export default function DeepFloodCaseStudy() {
                 <span>LATER</span>
               </div>
               <div className={styles.chronoBar}>
-                <div className={styles.chronoTrain}>Training period — 70%</div>
-                <div className={styles.chronoVal}>Validation period — 30%</div>
+                <div className={styles.chronoTrain}>Training period · 70%</div>
+                <div className={styles.chronoVal}>Validation period · 30%</div>
               </div>
               <div className={styles.chronoCaption}>
                 Validation period contains 107 chronological observations. The same period was used for checkpoint selection.
@@ -298,10 +298,10 @@ export default function DeepFloodCaseStudy() {
               <a href="#interpretation" className={styles.headingAnchor}>link</a>Interpretation
             </h2>
             <p className="reveal">
-              DeepFlood does not outperform persistence on every metric. Persistence achieves slightly lower MAE because streamflow often changes gradually between consecutive days — the persistence assumption is competitive under normal conditions.
+              DeepFlood does not outperform persistence on every metric. Persistence achieves slightly lower MAE because streamflow often changes gradually between consecutive days, so the persistence assumption remains competitive under normal conditions.
             </p>
             <p className="reveal">
-              DeepFlood substantially improves RMSE and NSE. This reflects the intended trade-off: peak-sensitive training places more weight on large flow errors during optimization, which emphasizes high flow deviations at the cost of a small increase in average absolute error on ordinary observations. The metrics disagree because they measure different things — MAE treats all errors equally, while RMSE penalizes large deviations more heavily.
+              DeepFlood substantially improves RMSE and NSE. This reflects the intended trade-off: peak-sensitive training places more weight on large flow errors during optimization, which emphasizes high flow deviations at the cost of a small increase in average absolute error on ordinary observations. The metrics emphasize different error behavior. MAE treats all errors equally, while RMSE penalizes large deviations more heavily.
             </p>
 
             <h2 id="limitations" className="reveal">

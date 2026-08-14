@@ -89,7 +89,7 @@
   100% { transform: scale(1); opacity: 0; }
 }
 
-/* card placement — left side */
+/* card placement - left side */
 .left .card {
   grid-column: 1;
   grid-row: 1;
@@ -97,7 +97,7 @@
   margin-right: clamp(24px, 3vw, 48px);
 }
 
-/* card placement — right side */
+/* card placement - right side */
 .right .card {
   grid-column: 3;
   grid-row: 1;

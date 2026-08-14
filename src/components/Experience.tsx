@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const entries = [
   {
     id: "polyu",
-    period: "2025 — 2029",
+    period: "2025 to 2029",
     color: "blue" as const,
     role: "BSc (Hons) Computer Science · Minor in Applied Mathematics",
     org: "The Hong Kong Polytechnic University",
@@ -25,7 +25,7 @@ const entries = [
   },
   {
     id: "seas",
-    period: "Jul — Aug 2025",
+    period: "Jul to Aug 2025",
     color: "green" as const,
     role: "Participant · AI/ML Summer Program",
     org: "Summer in Engineering and Applied Sciences (SEAS)",
@@ -219,7 +219,7 @@ export const Experience = () => {
                     <p className={styles.org}>{e.role}</p>
                   </div>
 
-                  {/* stat badge — only rendered when stat is non-empty */}
+                  {/* stat badge, only rendered when stat is non-empty */}
                   {e.stat && (
                   <div className={styles.statBadge} aria-hidden="true">
                     <span

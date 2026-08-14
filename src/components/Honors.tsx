@@ -34,7 +34,7 @@ const honors = [
     color: "red" as const,
   },
   {
-    year: "2025–2029",
+    year: "2025 to 2029",
     title: "PolyU Full-Ride Academic Entry Scholarship",
     rank: "Recipient",
     color: "green" as const,

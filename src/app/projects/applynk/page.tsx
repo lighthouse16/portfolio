@@ -143,7 +143,7 @@ export default function AppLynkCaseStudy() {
               <strong>Deterministic filtering before inference:</strong> TF-IDF relevance screening rejects off-domain documents, and MinHash LSH identifies near-duplicate raw records before any LLM processing. The goal is to avoid spending probabilistic model calls on content that deterministic checks can reject first.
             </p>
             <p className="reveal">
-              <strong>Structured interpretation:</strong> LLM workflows recover bounded structured fields from heterogeneous source text — deadlines, eligibility, provider details — using schema-constrained output. The model interprets source information; it does not become the source of truth. Structured output is normalized before publication.
+              <strong>Structured interpretation:</strong> LLM workflows recover bounded structured fields such as deadlines, eligibility, and provider details from heterogeneous source text using schema-constrained output. The model interprets source information; it does not become the source of truth. Structured output is normalized before publication.
             </p>
             <p className="reveal">
               <strong>Hybrid retrieval:</strong> 768-dimensional embeddings stored with PostgreSQL and <code>pgvector</code> support semantic retrieval. Semantic similarity handles conceptual meaning; SQL structured fields enforce explicit constraints such as deadline, category, and eligibility. Both paths are complementary, not interchangeable.
@@ -221,7 +221,7 @@ export default function AppLynkCaseStudy() {
                 <tbody>
                   <tr>
                     <td><strong>Filter before inference</strong></td>
-                    <td>Avoid sending obvious noise and near-duplicate content through model processing — deterministic checks are cheaper and sufficient for a first pass</td>
+                    <td>Avoid sending obvious noise and near-duplicate content through model processing because deterministic checks are cheaper and sufficient for a first pass</td>
                     <td>Adds a preprocessing stage; mis-calibrated thresholds could incorrectly reject valid content</td>
                   </tr>
                   <tr>
@@ -248,7 +248,7 @@ export default function AppLynkCaseStudy() {
               Independent end-to-end build covering product interface, full-stack application, ingestion architecture, structured extraction, database design, semantic retrieval, worker coordination, and deployment automation.
             </p>
             <p className="reveal">
-              The project is fundamentally about deciding where uncertainty belongs in a system — and building the surrounding infrastructure to make that boundary dependable.
+              The project is fundamentally about deciding where uncertainty belongs in a system and building the surrounding infrastructure to make that boundary dependable.
             </p>
 
             <h2 id="status" className="reveal"><a href="#status" className={styles.headingAnchor}>link</a>Status</h2>

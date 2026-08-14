@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Same-day streamflow nowcasting prototype specific to the Long Đại basin.",
   openGraph: {
-    title: "DeepFlood — Hydrological Nowcasting",
+    title: "DeepFlood · Hydrological Nowcasting",
     description:
       "A basin-specific time-series model with leakage-aware validation and peak-sensitive training.",
     type: "article",
