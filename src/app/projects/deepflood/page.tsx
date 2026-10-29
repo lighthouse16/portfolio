@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 import { ArrowLeft } from "lucide-react";
 import LineSidebar from "@/components/LineSidebar";
 import { Math } from "@/components/Math";
+import { DEEPFLOOD_PROJECT } from "@/data/projects";
 import styles from "./DeepFlood.module.css";
 
 gsap.registerPlugin(useGSAP);
@@ -73,8 +74,10 @@ export default function DeepFloodCaseStudy() {
               <span className={styles.metaDot}>·</span>
               <span>SEAS 2025 team origin · Continued independently</span>
               <span className={styles.metaDot}>·</span>
-              <a href="https://deepflood.haidangtrih.me/" target="_blank" rel="noreferrer" className={styles.metaLink}>
-                ↗ live dashboard
+              <span>{DEEPFLOOD_PROJECT.status}</span>
+              <span className={styles.metaDot}>·</span>
+              <a href={DEEPFLOOD_PROJECT.liveUrl} target="_blank" rel="noreferrer" className={styles.metaLink}>
+                ↗ {DEEPFLOOD_PROJECT.ctaLabel.toLowerCase()}
               </a>
             </div>
             <div className={styles.metaRow} style={{ marginTop: "10px" }}>
@@ -348,7 +351,9 @@ export default function DeepFloodCaseStudy() {
               <a href="#artifact" className={styles.headingAnchor}>link</a>Artifact
             </h2>
             <p className="reveal">
-              Evaluation dashboard: <a href="https://deepflood.haidangtrih.me/" target="_blank" rel="noreferrer" className={styles.metaLink}><code>https://deepflood.haidangtrih.me/</code></a>
+              Status: <strong>{DEEPFLOOD_PROJECT.status}</strong>
+              <br />
+              Evaluation dashboard: <a href={DEEPFLOOD_PROJECT.liveUrl} target="_blank" rel="noreferrer" className={styles.metaLink}><code>{DEEPFLOOD_PROJECT.liveUrl}</code></a>
             </p>
             <p className="reveal">
               Predictions shown are precomputed evaluation outputs. The dashboard visualizes hindcast results and is not an operational inference service.

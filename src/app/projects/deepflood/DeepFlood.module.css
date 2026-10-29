@@ -99,7 +99,7 @@
   position: relative;
   font-size: 1.5rem;
   font-weight: 600;
-
+  scroll-margin-top: 100px;
   margin: 48px 0 16px 0;
   color: var(--ink);
   display: flex;
@@ -191,6 +191,13 @@
 .reveal {
   opacity: 0;
   transform: translateY(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ── Editorial Visual Forms ── */
@@ -434,6 +441,50 @@
   margin-top: 10px;
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+/* 8. Results / Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0 16px 0;
+}
+
+.metricCard {
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metricValue {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.metricLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.metricPeriod {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.metricsNote {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 8px;
+  margin-bottom: 32px;
 }
 
 /* ── Responsive ── */

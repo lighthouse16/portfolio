@@ -7,15 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Braces,
   BrainCircuit,
-  ChartNoAxesCombined,
   Database,
   Languages,
   Activity,
-  Wrench,
-  ShieldCheck,
   Search,
-  FileJson,
-  ListOrdered,
   MessageCircle,
   type LucideIcon,
 } from "lucide-react";
@@ -261,7 +256,6 @@ export const Skills = () => {
 
         <div className={styles.panelStack}>
           {groups.map((group, groupIndex) => {
-            const Icon = group.icon;
             return (
               <article
                 key={group.id}

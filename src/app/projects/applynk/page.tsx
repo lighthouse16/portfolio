@@ -7,12 +7,14 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowLeft } from "lucide-react";
 import LineSidebar from "@/components/LineSidebar";
+import { APPLYNK_PROJECT } from "@/data/projects";
 import styles from "../deepflood/DeepFlood.module.css";
 
 gsap.registerPlugin(useGSAP);
 
 const sections = [
   { label: "Context", id: "context" },
+  { label: "Results", id: "results" },
   { label: "System", id: "system" },
   { label: "Pipeline", id: "pipeline" },
   { label: "Product", id: "product" },
@@ -53,10 +55,10 @@ export default function AppLynkCaseStudy() {
             <div className={styles.metaRow}>
               <span>Applied AI · Data Systems · Full-Stack Engineering</span>
               <span className={styles.metaDot}>·</span><span>Independent project · 2026 · Vietnam</span>
-              <span className={styles.metaDot}>·</span><span>Active development</span>
+              <span className={styles.metaDot}>·</span><span>{APPLYNK_PROJECT.status}</span>
               <span className={styles.metaDot}>·</span>
-              <a href="https://applynk.haidangtrih.me/en" target="_blank" rel="noreferrer" className={styles.metaLink}>
-                ↗ live website
+              <a href={APPLYNK_PROJECT.liveUrl} target="_blank" rel="noreferrer" className={styles.metaLink}>
+                ↗ {APPLYNK_PROJECT.ctaLabel}
               </a>
             </div>
             <div className={styles.metaRow} style={{ marginTop: "10px" }}>
@@ -73,7 +75,29 @@ export default function AppLynkCaseStudy() {
               Scholarships, competitions, internships, exchange programs, workshops, and volunteering opportunities are distributed across university websites, social posts, organization pages, PDFs, and application portals. Source formats are inconsistent. Deadlines and eligibility may be buried in prose. The same announcement often appears in several places with slightly different text.
             </p>
             <p className="reveal">
-              AppLynk exists to transform that fragmented information into structured, searchable records.
+              AppLynk is an independent end-to-end project built to transform that fragmented information into structured, searchable records. I designed and implemented the entire system, including the product interface and full-stack application, data ingestion and structured extraction, database and retrieval design, and deployment automation.
+            </p>
+
+            <h2 id="results" className="reveal">
+              <a href="#results" className={styles.headingAnchor}>link</a>Results
+            </h2>
+            <p className="reveal">
+              {APPLYNK_PROJECT.metrics?.summaryText}
+            </p>
+            <div className={`${styles.metricsGrid} reveal`}>
+              <div className={styles.metricCard}>
+                <div className={styles.metricValue}>{APPLYNK_PROJECT.metrics?.uniqueVisitors}</div>
+                <div className={styles.metricLabel}>Unique visitors</div>
+                <div className={styles.metricPeriod}>{APPLYNK_PROJECT.metrics?.reportingPeriod} · {APPLYNK_PROJECT.metrics?.source}</div>
+              </div>
+              <div className={styles.metricCard}>
+                <div className={styles.metricValue}>{APPLYNK_PROJECT.metrics?.pageviews}</div>
+                <div className={styles.metricLabel}>Pageviews</div>
+                <div className={styles.metricPeriod}>{APPLYNK_PROJECT.metrics?.reportingPeriod} · {APPLYNK_PROJECT.metrics?.source}</div>
+              </div>
+            </div>
+            <p className={`${styles.metricsNote} reveal`}>
+              {APPLYNK_PROJECT.metrics?.secondaryNote}
             </p>
 
             <h2 id="system" className="reveal"><a href="#system" className={styles.headingAnchor}>link</a>System</h2>
@@ -253,10 +277,10 @@ export default function AppLynkCaseStudy() {
 
             <h2 id="status" className="reveal"><a href="#status" className={styles.headingAnchor}>link</a>Status</h2>
             <p className="reveal">
-              Live product: <a href="https://applynk.haidangtrih.me/en" target="_blank" rel="noreferrer" className={styles.metaLink}><code>https://applynk.haidangtrih.me/en</code></a>
+              Live website: <a href={APPLYNK_PROJECT.liveUrl} target="_blank" rel="noreferrer" className={styles.metaLink}><code>{APPLYNK_PROJECT.liveUrl}</code></a>
             </p>
             <p className="reveal">
-              Active development focused on expanding sources, improving ranking, and refining retrieval quality.
+              {APPLYNK_PROJECT.statusSummary}
             </p>
           </article>
         </div>

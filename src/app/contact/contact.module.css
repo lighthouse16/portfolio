@@ -61,6 +61,42 @@
   transition: color 220ms var(--ease-out), padding-left 220ms var(--ease-out);
 }
 
+.channelButton {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  color: inherit;
+}
+
+.channelFeedbackIcon {
+  color: var(--green);
+}
+
+.channelFeedbackErrorIcon {
+  color: var(--red);
+}
+
+.channelFeedbackText {
+  color: var(--green);
+  font-weight: 500;
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.9em;
+}
+
+.channelFeedbackErrorText {
+  color: var(--red);
+  font-weight: 500;
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.9em;
+}
+
 .channel:hover {
   padding-left: 10px;
   color: var(--blue);

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, createElement, useMemo, useCallback } from "react";
+import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { gsap } from "gsap";
 import styles from "./TextType.module.css";
 
@@ -171,24 +171,26 @@ const TextType = ({
   const shouldHideCursor =
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
-  return createElement(
-    Component,
-    {
-      ref: containerRef,
-      className: `${styles.container} ${className}`,
-      ...props,
-    },
-    <span className={styles.content} style={{ color: getCurrentTextColor() || "inherit" }}>
-      {displayedText}
-    </span>,
-    showCursor && (
-      <span
-        ref={cursorRef}
-        className={`${styles.cursor} ${cursorClassName} ${shouldHideCursor ? styles.cursorHidden : ""}`}
-      >
-        {cursorCharacter}
+  const ComponentTag = Component as React.ElementType;
+
+  return (
+    <ComponentTag
+      ref={containerRef}
+      className={`${styles.container} ${className}`}
+      {...props}
+    >
+      <span className={styles.content} style={{ color: getCurrentTextColor() || "inherit" }}>
+        {displayedText}
       </span>
-    )
+      {showCursor && (
+        <span
+          ref={cursorRef}
+          className={`${styles.cursor} ${cursorClassName} ${shouldHideCursor ? styles.cursorHidden : ""}`}
+        >
+          {cursorCharacter}
+        </span>
+      )}
+    </ComponentTag>
   );
 };
 

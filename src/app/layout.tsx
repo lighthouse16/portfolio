@@ -6,13 +6,18 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://haidangtrih.me"),
   title: "Hai Dang Trinh | CS @ PolyU",
   description:
     "Computer Science student at PolyU building and evaluating applied AI systems, machine learning pipelines, and data-driven software.",
+  alternates: {
+    canonical: "https://haidangtrih.me/",
+  },
   openGraph: {
     title: "Hai Dang Trinh | CS @ PolyU",
     description:
       "Applied AI, machine learning evaluation, and data-driven software.",
+    url: "https://haidangtrih.me/",
     type: "website",
   },
 };

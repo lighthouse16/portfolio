@@ -69,10 +69,10 @@ export const About = () => {
               I&apos;m a Computer Science student at The Hong Kong Polytechnic University, with a minor in Applied Mathematics.
             </p>
             <p>
-              I work across machine learning, data systems, and software engineering, building solutions where quantitative reasoning meets real world constraints.
+              I build applied AI tools, data pipelines, and web applications, taking projects from an initial idea to a working product.
             </p>
             <p>
-              My interests span AI/ML, quantitative engineering, FinTech, and reliable software systems.
+              My interests include machine learning, quantitative engineering, FinTech, and reliable software systems.
             </p>
           </div>
         </div>
